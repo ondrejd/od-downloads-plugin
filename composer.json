@@ -1,0 +1,25 @@
+{
+	"name": "ondrejd/od-downloads-plugin",
+	"description": "...",
+	"homepage": "https://wordpress.org/plugins/od-downloads-plugin/",
+	"type": "plugin",
+	"license": "MPL-2.0",
+	"keywords": ["wordpress","plugin"],
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "Ondřej Doněk",
+			"email": "ondrejd@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"classmap": [
+			"./"
+		]
+	},
+	"require": {
+		"php": ">=5.3.1",
+		"ondrejd/odwp": "dev-master"
+	}
+}
