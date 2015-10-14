@@ -44,14 +44,59 @@ class odWpDownloadsPlugin extends \odwp\SimplePlugin
 	protected $id = 'od-downloads-plugin';
 	protected $version = '0.5';
 	protected $textdomain = 'od-downloads-plugin';
-	protected $options = array(
-        'main_downloads_dir' => 'wp-content/downloads/',
-        'downloads_page_id' => 0,
-        'downloads_thumb_size_width' => 146,
-        'downloads_shortlist_max_count' => 2
-	);
 	protected $admin_menu_position = 11;
     protected $enable_default_options_page = true;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @return void
+	 */
+	public function __construct() {
+		$this->init_locales();
+
+		$this->options = array();
+		$this->options[] = new \odwp\PluginOption(
+			'main_downloads_dir',
+			__('Main downloads dir', $this->get_textdomain()),
+			\odwp\PluginOption::TYPE_STRING,
+			'wp-content/downloads/'
+		);
+		$this->options[] = new \odwp\PluginOption(
+			'downloads_page_id',
+			__('ID of page with downloads listed', $this->get_textdomain()),
+			\odwp\PluginOption::TYPE_NUMBER,
+			0
+		);
+		$this->options[] = new \odwp\PluginOption(
+			'downloads_thumb_size_use_default',
+			__('Use default thumbnails size', $this->get_textdomain()),
+			\odwp\PluginOption::TYPE_BOOL,
+			false,
+			__('You can use either default WordPress thumbnail size or your own.', $this->get_textdomain())
+		);
+		$this->options[] = new \odwp\PluginOption(
+			'downloads_thumb_size_width',
+			__('Width of thumbnail images', $this->get_textdomain()),
+			\odwp\PluginOption::TYPE_NUMBER,
+			146
+		);
+		$this->options[] = new \odwp\PluginOption(
+			'downloads_thumb_size_height',
+			__('Height of thumbnail images', $this->get_textdomain()),
+			\odwp\PluginOption::TYPE_NUMBER,
+			89
+		);
+		$this->options[] = new \odwp\PluginOption(
+			'downloads_shortlist_max_count',
+			__('Count of short listing items', $this->get_textdomain()),
+			\odwp\PluginOption::TYPE_NUMBER,
+			2,
+			__('Maximal count of downloads items in short listing.', $this->get_textdomain())
+		);
+
+		parent::__construct();
+	}
 
     /**
      * Returns title of the plug-in.
