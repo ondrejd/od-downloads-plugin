@@ -1,0 +1,21 @@
+/**
+ * Styles for WP administration.
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @package odwp-downloads_plugin
+ */
+
+.date-input-group .day {
+	height: 32px;
+	width: 40px;
+}
+.date-input-group .month {
+	height: 32px;
+	position: relative;
+	top: -2px;
+}
+.date-input-group .year {
+	height: 32px;
+	width: 50px;
+}

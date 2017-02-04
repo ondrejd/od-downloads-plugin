@@ -1,0 +1,46 @@
+<?php
+/**
+ * Template file for metabox "Datum sejmuti".
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @package odwp-compare_filter_search
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit();
+}
+
+wp_nonce_field( 'odwpdp-metabox2-nonce', 'odwpdp-metabox-2-nonce' );
+
+?><div>
+    <label class="screen-reader-text" for="odwpdp-metabox-2-jj"><?php _e( 'Zadejte datum sejmutí:', ODWPDP_SLUG ); ?></label>
+    <p class="date-input-group">
+        <label for="odwpdp-metabox-2-dd"><?php _e( 'Zadejte datum:', ODWPDP_SLUG ); ?></label>
+        <label>
+            <span class="screen-reader-text"><?php _e( 'Den', ODWPDP_SLUG ); ?></span>
+            <input id="odwpdp-metabox-2-dd" name="odwpdp-metabox-2-dd" value="<?php echo $val['d']; ?>" size="2" maxlength="2" autocomplete="off" type="text" class="day">
+        </label>.
+        <label>
+            <span class="screen-reader-text"><?php _e( 'Měsíc', ODWPDP_SLUG ); ?></span>
+            <select name="odwpdp-metabox-2-mm" class="month">
+                <option value="01" data-text="<?php _e( 'Leden', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 1 ); ?>><?php _e( '01 - Leden', ODWPDP_SLUG ); ?></option>
+                <option value="02" data-text="<?php _e( 'Únor', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 2 ); ?>><?php _e( '02 - Únor', ODWPDP_SLUG ); ?></option>
+                <option value="03" data-text="<?php _e( 'Březen', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 3 ); ?>><?php _e( '03 - Březen', ODWPDP_SLUG ); ?></option>
+                <option value="04" data-text="<?php _e( 'Duben', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 4 ); ?>><?php _e( '04 - Duben', ODWPDP_SLUG ); ?></option>
+                <option value="05" data-text="<?php _e( 'Květen', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 5 ); ?>><?php _e( '05 - Květen', ODWPDP_SLUG ); ?></option>
+                <option value="06" data-text="<?php _e( 'Červen', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 6 ); ?>><?php _e( '06 - Červen', ODWPDP_SLUG ); ?></option>
+                <option value="07" data-text="<?php _e( 'Červenec', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 7 ); ?>><?php _e( '07 - Červenec', ODWPDP_SLUG ); ?></option>
+                <option value="08" data-text="<?php _e( 'Srpen', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 8 ); ?>><?php _e( '08 - Srpen', ODWPDP_SLUG ); ?></option>
+                <option value="09" data-text="<?php _e( 'Září', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 9 ); ?>><?php _e( '09 - Září ', ODWPDP_SLUG ); ?></option>
+                <option value="10" data-text="<?php _e( 'Říjen', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 10 ); ?>><?php _e( '10 - Říjen', ODWPDP_SLUG ); ?></option>
+                <option value="11" data-text="<?php _e( 'Listopad', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 11 ); ?>><?php _e( '11 - Listopad', ODWPDP_SLUG ); ?></option>
+                <option value="12" data-text="<?php _e( 'Prosinec', ODWPDP_SLUG ); ?>" <?php selected( intval( $val['m'] ), 12 ); ?>><?php _e( '12 - Prosinec', ODWPDP_SLUG ); ?></option>
+            </select>
+        </label>.
+        <label>
+            <span class="screen-reader-text"><?php _e( 'Rok', ODWPDP_SLUG ); ?></span>
+            <input name="odwpdp-metabox-2-yy" value="<?php echo $val['y']; ?>" size="4" maxlength="4" autocomplete="off" type="text" class="year">
+        </label>
+    </p>
+</div>

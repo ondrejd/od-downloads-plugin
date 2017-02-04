@@ -3,10 +3,10 @@ Contributors: ondrejd
 Donate link: http://www.ondrejd.info/projects/wordpress-plugins/od-downloads-plugin/
 Tags: media,downloads
 Requires at least: 2.8
-Tested up to: 4.3.1
-Stable tag: 0.4.1
+Tested up to: 4.7.2
+Stable tag: 1.0.0
 
-Manager for files that you want to offer to visitors of your pages for download. Allow to use either sidebar widget or whole dowload page.
+Manager for files that you want to offer to visitors of your pages for download. Allow to use either [widget](), [shortcode]() or by using theme template for the custom post type.
 
 == Description ==
 

@@ -13,13 +13,15 @@
 			"role": "Developer"
 		}
 	],
+	"support": {
+		"issues": "https://github.com/ondrejd/od-downloads-plugin/issues"
+	},
 	"autoload": {
 		"classmap": [
 			"./"
 		]
 	},
 	"require": {
-		"php": ">=5.3.1",
-		"ondrejd/odwp": "dev-master"
+		"php": ">=5.3.1"
 	}
 }
