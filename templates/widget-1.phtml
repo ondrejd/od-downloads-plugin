@@ -1,0 +1,59 @@
+<?php
+/**
+ * Template file for widget "Soubory ke stažení".
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @package odwp-downloads_plugin
+ * 
+ * @todo Format dates by WordPress inner function!
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit();
+}
+
+/**
+ * Used parameters (taken from {@see odwpdp_widget_1::widget()}).
+ *
+ * @param array $args
+ * @param array $instance
+ * @param array $files
+ */
+
+// Starts widget
+echo $args['before_widget'];
+
+// Widget's title
+if ( ! empty( $instance['title'] ) ) {
+    echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+}
+
+?>
+<div class="odwpdp-widget-1">
+	<ul>
+		<?php foreach ( $files as $file ) :
+			$puton_date    = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
+			$putoff_date   = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
+			$download_link = odwpdp_get_download_link( $file->ID );
+		?>
+		<li>
+			<strong>
+				<a href="<?php echo $download_link; ?>"><?php echo $file->post_title; ?></a>
+			</strong><br>
+			<?php if ( ! empty( $puton_date ) ) : ?>
+			<span class="value-label"><?php _e( 'Datum vyvěšení:', ODWPDP_SLUG ); ?></span>
+			<span class="value"><?php echo date( 'j.n.Y', strtotime( $puton_date ) ); ?></span>
+			<?php endif; ?>
+			<?php if ( ! empty( $putoff_date ) ) : ?>
+			<span class="value-label"><?php _e( 'Datum sejmutí:', ODWPDP_SLUG ); ?></span>
+			<span class="value"><?php echo date( 'j.n.Y', strtotime( $putoff_date ) ); ?></span>
+			<?php endif; ?>
+		</li>
+		<?php endforeach; ?>
+	</ul>
+</div>
+<?php
+
+// Ends widget
+echo $args['after_widget'];

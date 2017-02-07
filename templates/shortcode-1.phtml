@@ -1,0 +1,57 @@
+<?php
+/**
+ * Template file for shortcode "Soubory ke stažení".
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @package odwp-downloads_plugin
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit();
+}
+
+/**
+ * Used parameters (taken from {@see odwpdp_add_shortcode_1()}).
+ *
+ * @param array $attrs
+ * @param array $files
+ */
+
+?><div id="odwpdp-shortcode-1">
+    <?php if ( (bool) $attrs['show_title'] === true && ! empty( $attrs['title'] ) ) : ?>
+    <h2 class="odwpdp-shortcode-1-title"><?php echo esc_html( $attrs['title'] ); ?></h2>
+    <?php endif;?>
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th scope="col"><?php _e( 'Název', ODWPDP_SLUG ); ?>
+                <th scope="col"><?php _e( 'Datum vyvěšení', ODWPDP_SLUG ); ?>
+                <th scope="col"><?php _e( 'Datum stažení', ODWPDP_SLUG ); ?>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ( $files as $file ) :
+            $puton_date    = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
+            $putoff_date   = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
+            $download_link = odwpdp_get_download_link( $file->ID );
+        ?>
+            <tr>
+                <th scope="row">
+                    <a href="<?php echo $download_link; ?>"><?php echo $file->post_title; ?></a>
+                </th>
+                <td>
+                    <?php if ( ! empty( $puton_date ) ) : ?>
+                    <?php echo date( 'j.n.Y', strtotime( $puton_date ) ); ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ( ! empty( $putoff_date ) ) : ?>
+                    <?php echo date( 'j.n.Y', strtotime( $putoff_date ) ); ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

@@ -4,7 +4,7 @@
  *
  * @author  Ondřej Doněk, <ondrejd@gmail.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
- * @package odwp-compare_filter_search
+ * @package odwp-downloads_plugin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -61,9 +61,20 @@ if ( ! function_exists( 'odwpdp_save_metabox_3' ) ) :
             return $post_id;
         }
 
-        $value = filter_input( INPUT_POST, 'odwpdp-metabox-3-input' );
+        $files_arr = array();
+        $files_str = '';
 
-        update_post_meta( $post_id, 'odwpdp-metabox-3', $value );
+        foreach ( $_POST['file'] as $meta_key => $meta_value ) {
+            if ( is_array( $meta_value ) ) {
+                if ( count( $meta_value ) > 0 ) {
+                    $files_arr[] = $meta_value[0];
+                }
+            }
+        }
+
+        $files_str = implode( ',', $files_arr );
+
+        update_post_meta( $post_id, 'odwpdp-metabox-3', $files_str );
 
         return $post_id;
     }

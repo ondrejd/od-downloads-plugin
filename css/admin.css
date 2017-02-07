@@ -6,6 +6,7 @@
  * @package odwp-downloads_plugin
  */
 
+/* Date input */
 .date-input-group .day {
 	height: 32px;
 	width: 40px;
@@ -18,4 +19,33 @@
 .date-input-group .year {
 	height: 32px;
 	width: 50px;
+}
+
+/* File uploader */
+.cfile-container {
+	padding: 10px;
+}
+.cfile {
+	background: #FFF;
+	border: 2px solid #ddd;
+	padding: 10px;
+}
+.cfile .cfile-info {
+	position: relative;
+}
+.cfile .cfile-info a {
+	height: 32px;
+	position: absolute;
+	right: 0;
+	text-decoration:none !important;
+	top: 0;
+}
+.cfile .nofile {
+	font-weight: bold;
+	color: #ddd;
+}
+
+/* TinyMCE icon */
+i.odwpdp_shortcode_1-icon {
+    background-image: url('../icon16.png');
 }
