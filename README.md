@@ -40,20 +40,26 @@ Using manual download:
 
 ### Add new download page
 
-![screen1](screenshot-2.png "screen2")
+![screen2](screenshot-2.png "screen2")
 
 ### Edit download page
 
-![screen1](screenshot-3.png "screen3")
+![screen3](screenshot-3.png "screen3")
 
 ### Page with widgets administration
 
-![screen1](screenshot-4.png "screen4")
+![screen4](screenshot-4.png "screen4")
 
 ### Entering our shortcode to the post
 
-![screen1](screenshot-5.png "screen5")
+![screen5](screenshot-5.png "screen5")
 
 ### Page with our shortcode and widget displayed
 
-![screen1](screenshot-6.png "screen6")
+Here with normal desktop resolution:
+
+![screen6](screenshot-6.png "screen6")
+
+Here on smaller screen:
+
+![screen7](screenshot-7.png "screen7")
