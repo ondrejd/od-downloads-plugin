@@ -32,10 +32,12 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
         ), $atts );
 
         // Get items to show
-        $files = get_posts( array(
-            'numberposts' => intval( $instance['count'] ),
-            'post_type'   => ODWPDP_CPT,
-        ) );
+        $args  = array( 'post_type' => ODWPDP_CPT );
+        if ( $attrs['count'] > 0 ) {
+            $args['numberposts'] = $attrs['count'];
+        }
+
+        $files = get_posts( $args );
 
         // Render template
         ob_start( function() {} );

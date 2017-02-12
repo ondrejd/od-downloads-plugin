@@ -24,6 +24,8 @@ defined( 'ODWPDP_PATH' )    || define( 'ODWPDP_PATH', dirname( ODWPDP_FILE ) );
 defined( 'ODWPDP_CPT' )     || define( 'ODWPDP_CPT', 'odwpdp_cpt' );
 defined( 'ODWPDP_UPLOADS' ) || define( 'ODWPDP_UPLOADS', sprintf( "%s/%s/%s", WP_CONTENT_DIR, defined( 'UPLOADS' ) ? UPLOADS : 'uploads', ODWPDP_SLUG ) );
 defined( 'ODWPDP_AJAX_UP' ) || define( 'ODWPDP_AJAX_UP', 'odwpdp_upload_file' );
+defined( 'ODWPDP_ICON_16' ) || define( 'ODWPDP_ICON_16', '16x16' );
+defined( 'ODWPDP_ICON_32' ) || define( 'ODWPDP_ICON_32', '32x32' );
 
 
 
@@ -319,20 +321,95 @@ include_once( ODWPDP_PATH . '/src/shortcode-1.php' );
 
 
 
-if ( ! function_exists( 'odwpdp_get_download_link' ) ) :
+if ( ! function_exists( 'odwpdp_get_file_url' ) ) :
     /**
-     * Returns URL of download link.
-     * @param integer $post_id
-     * @return string
+     * @internal
+     * @param string $file File name.
+     * @return string URL of download link.
      */
-    function odwpdp_get_download_link( $post_id ) {
-        $file_name   = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
-        $uploads_dir = defined( 'UPLOADS' ) ? UPLOADS : 'uploads';
-
-        if ( empty( $file_name ) ) {
+    function odwpdp_get_file_url( $file ) {
+        if ( empty( $file ) ) {
             return '#';
         }
 
-        return content_url( $uploads_dir . '/' . ODWPDP_SLUG . '/' . $file_name );
+        return content_url( ODWPDP_UPLOADS . "/{$file}" );
+    }
+endif;
+
+
+
+if ( ! function_exists( 'odwpdp_get_file_icon' ) ):
+    /**
+     * @internal
+     * @param string $ext (Optional.)
+     * @param string $size (Optional.) Defaultly "16x16".
+     * @return string URL to file type icon.
+     */
+    function odwpdp_get_file_icon( $ext = null, $size = ODWPDP_ICON_16 ) {
+        if ( ! in_array( $size, array( ODWPDP_ICON_16, ODWPDP_ICON_32 ) ) ) {
+            $size = ODWPDP_ICON_16;
+        }
+
+        if ( empty( $ext ) ) {
+            $path = "img/{$size}/document_empty.png";
+        }
+        else {
+            $path = "img/{$size}/file_extension_{$ext}.png";
+        }
+
+        $full_path = ODWPDP_PATH . '/' . $path;
+
+        if ( ! file_exists( $full_path ) ) {
+            $path = "img/{$size}/document_red.png";
+        }
+
+        $full_url = plugins_url( $path, ODWPDP_FILE );
+
+        return apply_filters( 'odwpdp-file-icon', $full_url, $ext, $size );
+    }
+endif;
+
+
+
+if ( ! function_exists( 'odwpdp_get_file_info' ) ):
+    /**
+     * Returns array with info about given file.
+     *
+     * <p>Info array contains these keys:</p>
+     * <ul>
+     *   <li><code>exist</code>; <i>boolean</i>, <i>true</i> if file exists</li>
+     *   <li><code>file</code>; <i>string</i>, file name</li>
+     *   <li><code>icon_16</code>; <i>string</i>, 16x16 icon by file type</li>
+     *   <li><code>icon_32</code>; <i>string</i>, 32x32 icon by file type</li>
+     *   <li><code>path</code>; <i>string</i>, full file path</li>
+     *   <li><code>size</code>; <i>integer</i>, size of file</li>
+     *   <li><code>url</code>; <i>string</i>,  URL for download link</li>
+     * </ul>
+     *
+     * @param string $file
+     * @return array Array with file info.
+     * @uses odwpdp_get_file_url()
+     * @uses odwpdp_get_file_icon()
+     */
+    function odwpdp_get_file_info( $file ) {
+        $info = array(
+            'exist'     => false,
+            'file'      => $file,
+            'icon_16'   => null,
+            'icon_32'   => null,
+            'path'      => null,
+            'size'      => null,
+            'url'       => odwpdp_get_file_url( $file ),
+        );
+        $upload_dir      = wp_upload_dir();
+        $info['path']    = sprintf( '%s/%s/%s', $upload_dir['basedir'], ODWPDP_SLUG, $file );
+        $info['exist']   = file_exists( $info['path'] );
+        $info['size']    = size_format( filesize( $info['path'] ), 2);
+        $file_ext_arr    = strpos( $file, '.' ) !== false ? explode( '.', $file ) : array();
+        $file_ext        = count( $file_ext_arr ) == 0 ? '' : $file_ext_arr[count( $file_ext_arr ) - 1];
+        $info['icon_16'] = odwpdp_get_file_icon( $file_ext );
+        $info['icon_32'] = odwpdp_get_file_icon( $file_ext, ODWPDP_ICON_32 );
+
+        return apply_filters( 'odwpdp-file-info', $info, $file );
     }
 endif;
