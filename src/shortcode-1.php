@@ -51,27 +51,27 @@ add_shortcode( 'soubory_ke_stazeni', 'odwpdp_add_shortcode_1' );
 // Functions below are for TinyMCE button for this shortcode:
 
 if ( ! function_exists( 'odwpdp_add_tinymce_btn_shortcode_1' ) ) :
-	/**
-	 * Enable easy access to our shortcode via TinyMCE button.
-	 * @global string $typenow
-	 */
-	function odwpdp_add_tinymce_btn_shortcode_1() {
-	    global $typenow;
+    /**
+     * Enable easy access to our shortcode via TinyMCE button.
+     * @global string $typenow
+     */
+    function odwpdp_add_tinymce_btn_shortcode_1() {
+        global $typenow;
 
-	    if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
-	        return;
-	    }
-	    // verify the post type
-	    if ( ! in_array( $typenow, array( 'post', 'page' ) ) ) {
-	        return;
-	    }
-	    // check if WYSIWYG is enabled
-	    if ( get_user_option( 'rich_editing' ) == 'true' ) {
-	        add_filter( 'mce_external_plugins', 'odwpdp_register_tinymce_plugin_shortcode_1' );
-	        add_filter( 'mce_buttons', 'odwpdp_register_tinymce_btn_shortcode_1' );
-	    }
-	}
-	endif;
+        if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+            return;
+        }
+        // verify the post type
+        if ( ! in_array( $typenow, array( 'post', 'page' ) ) ) {
+            return;
+        }
+        // check if WYSIWYG is enabled
+        if ( get_user_option( 'rich_editing' ) == 'true' ) {
+            add_filter( 'mce_external_plugins', 'odwpdp_register_tinymce_plugin_shortcode_1' );
+            add_filter( 'mce_buttons', 'odwpdp_register_tinymce_btn_shortcode_1' );
+        }
+    }
+    endif;
 add_action( 'admin_head', 'odwpdp_add_tinymce_btn_shortcode_1' );
 
 
