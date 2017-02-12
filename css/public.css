@@ -6,3 +6,65 @@
  * @package odwp-downloads_plugin
  */
 
+/*
+ * Shortcode "Soubory ke stažení"
+ */
+.odwpdp-shortcode-1 {}
+.odwpdp-shortcode-1 .files-table { width: 100%; }
+.odwpdp-shortcode-1 .files-table thead th {}
+.odwpdp-shortcode-1 .files-table thead th {
+    text-align: left !important;
+}
+.odwpdp-shortcode-1 table.files-table tbody th {}
+.odwpdp-shortcode-1 table.files-table tbody td {}
+.odwpdp-shortcode-1 .file-info-cont {
+    width: 332px;
+}
+
+/*
+ * Widget "Soubory ke stažení"
+ */
+.odwpdp-widget-1 {}
+.odwpdp-widget-1 ul.files-list {}
+.odwpdp-widget-1 ul.files-list li {
+    clear: both;
+}
+.odwpdp-widget-1 .file-info-cont-small {
+    width: 262px;
+}
+
+/*
+ * File info container
+ */
+.file-info-cont {
+    display: inline-table;
+    height: 52px;
+    min-width: 262px;
+}
+.file-info-cont .file-icon {
+    display: table-cell;
+    float: left;
+    height: 32px;
+    padding: 10px 0px 10px 0px;
+    position: relative;
+    top: -3px;
+    vertical-align: middle;
+    width: 32px;
+}
+.file-info-cont .file-info {
+    float: left;
+    display: table-cell;
+    height: 52px;
+    padding-left: 10px;
+    text-align: left;
+    vertical-align: middle;
+    width: 200px;
+}
+.file-info-cont .file-link {}
+.file-info-cont .file-size {}
+.file-info-cont .file-dates {}
+
+.file-info-cont-small .file-size, .file-info-cont-small .file-dates {
+    font-size: 85%;
+}
+

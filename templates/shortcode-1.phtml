@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php if ( (bool) $attrs['show_title'] === true && ! empty( $attrs['title'] ) ) : ?>
     <h2 class="odwpdp-shortcode-1-title"><?php echo esc_html( $attrs['title'] ); ?></h2>
     <?php endif;?>
-    <table style="width: 100%;">
+    <table class="files-table">
         <thead>
             <tr>
                 <th scope="col"><?php _e( 'Název', ODWPDP_SLUG ); ?>
@@ -39,13 +39,18 @@ if ( ! defined( 'ABSPATH' ) ) {
         ?>
             <tr>
                 <th scope="row">
-                    <div class="file-info-cont" style="display: inline-table; height: 52px; vertical-align: middle; min-width: 262px; width: 332px;">
-                        <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon" style="display: table-cell; float: left; height: 32px; padding: 10px 0px 10px 0px; position: relative; top: -3px; vertical-align: middle; width: 32px;">
-                        <span style="float: left; display: table-cell; height: 52px; padding-left: 10px; text-align: left; vertical-align: middle; min-width: 220px; width: 290px;">
-                            <a href="<?php echo $file_info['url']; ?>" class="file-link"><?php echo $file->post_title; ?></a><br>
-                            <span class="file-size"><?php printf( __( 'Velikost: %s', ODWPDP_SLUG ), $file_info['size'] ); ?></span>
-                        </span>
-                    </div>
+                    <div class="file-info-cont">
+                        <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon">
+                        <?php printf(
+                            '<span class="file-info">' .
+                                '<a href="%s" class="file-link">%s</a><br>' .
+                                '<span class="file-size">%s %s</span>' .
+                            '</span>',
+                            $file_info['url'],
+                            $file->post_title,
+                            __( 'Velikost:', ODWPDP_SLUG ),
+                            $file_info['size']
+                        ); ?>
                 </th>
                 <td>
                     <?php if ( ! empty( $puton_date ) ) : ?>

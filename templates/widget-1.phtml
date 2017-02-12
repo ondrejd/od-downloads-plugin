@@ -31,7 +31,7 @@ if ( ! empty( $instance['title'] ) ) {
 
 ?>
 <div class="odwpdp-widget-1">
-    <ul>
+    <ul class="files-list">
         <?php foreach ( $files as $file ) :
             $puton_date  = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
             $putoff_date = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
@@ -39,21 +39,22 @@ if ( ! empty( $instance['title'] ) ) {
             $file_info   = odwpdp_get_file_info( $file_name );
         ?>
         <li>
-            <div class="file-info-cont-small" style="display: inline-table; height: 52px; vertical-align: middle; width: 262px;">
-                <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon" style="display: table-cell; float: left; height: 32px; padding: 10px 0px 10px 0px; position: relative; top: -3px; vertical-align: middle; width: 32px;">
-                <span style="float: left; display: table-cell; height: 52px; padding-left: 10px; text-align: left; vertical-align: middle; width: 200px;">
-                    <a href="<?php echo $file_info['url']; ?>" class="file-link"><?php echo $file->post_title; ?></a><br>
-                    <small class="file-size"><?php echo $file_info['size']; ?></small>
-                    &nbsp;|&nbsp;
-                    <small class="value" title="<?php _e( 'Datum vyvěšení/sejmutí', ODWPDP_SLUG ); ?>"><?php
-                    printf(
-                        '%s/%s',
-                        ( ! empty( $puton_date ) ) ? date( 'j.n.Y', strtotime( $puton_date ) ) : '---',
-                        ( ! empty( $putoff_date ) ) ? date( 'j.n.Y', strtotime( $putoff_date ) ) : '---'
-                    );
-                    ?></small>
-                </span>
-            </div>
+            <span class="file-info-cont file-info-cont-small">
+                <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon">
+                <?php printf(
+                    '<span class="file-info">' .
+                        '<a href="%s" class="file-link">%s</a><br>' .
+                        '<small class="file-size">%s</small>&nbsp;|&nbsp;' .
+                        '<small class="file-dates" title="%s">%s/%s</small>' .
+                    '</span>',
+                    $file_info['url'],
+                    $file->post_title,
+                    $file_info['size'],
+                    __( 'Datum vyvěšení/sejmutí', ODWPDP_SLUG ),
+                    ( ! empty( $puton_date ) ) ? date( 'j.n.Y', strtotime( $puton_date ) ) : '---',
+                    ( ! empty( $putoff_date ) ) ? date( 'j.n.Y', strtotime( $putoff_date ) ) : '---'
+                ); ?>
+            </span>
         </li>
         <?php endforeach; ?>
     </ul>

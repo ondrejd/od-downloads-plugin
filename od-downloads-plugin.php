@@ -259,7 +259,7 @@ if ( !function_exists( 'odwpdp_public_scripts' ) ) :
      * Append our CSS styles and JavaScripts for the front-end.
      */
     function odwpdp_public_scripts() {
-        wp_enqueue_style( 'odwpdp-admin-css', plugins_url( '/css/public.css', ODWPDP_FILE ) );
+        wp_enqueue_style( 'odwpdp-public-css', plugins_url( '/css/public.css', ODWPDP_FILE ) );
     }
 endif;
 add_action( 'wp_enqueue_scripts', 'odwpdp_public_scripts' );
