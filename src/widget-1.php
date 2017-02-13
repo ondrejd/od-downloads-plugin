@@ -59,7 +59,7 @@ class odwpdp_widget_1 extends WP_Widget {
 
         $count_id     = $this->get_field_id( 'count' );
         $count_name   = $this->get_field_name( 'count' );
-        $count_val    = ! empty( $instance['count'] ) ? $instance['orderby'] : '5';
+        $count_val    = ! empty( $instance['count'] ) ? $instance['count'] : '5';
 
         $orderby_id   = $this->get_field_id( 'orderby' );
         $orderby_name = $this->get_field_name( 'orderby' );
