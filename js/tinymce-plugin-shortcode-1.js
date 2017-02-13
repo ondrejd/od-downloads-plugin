@@ -14,47 +14,65 @@
             onclick: function() {
                 editor.windowManager.open( {
                     title: 'Vložte soubory ke stažení',
+                    description: 'xxx',
                     body: [{
                         type: 'textbox',
                         name: 'title',
                         label: 'Název',
                         value: 'Soubory ke stažení'
                     }, {
-                        type: 'checkbox',
-                        name: 'show_title',
-                        label: 'Zobrazit název?'
-                    }, {
                         type: 'textbox',
                         subtype: 'number',
                         name: 'count',
-                        label: 'Počet',
-                        description: 'Počet položek k zobrazení (0 pro zobrazení všech položek).',
-                        value: 0
+                        label: 'Počet položek',
+                        value: 5
                     }, {
                         type: 'listbox',
                         name: 'orderby',
                         label: 'Řadit dle',
                         description: 'Vyberte dle jaké hodnoty se mají soubory řadit.',
-                        value: 'title'
+                        value: 'title',
                         values: [
                             { text: 'Názvu', value: 'title' },
                             { text: 'Data vyvěšení', value: 'puton_date' },
-                            { text: 'Data sejmutí', value: 'putoff_date' },
+                            { text: 'Data sejmutí', value: 'putoff_date' }
                         ]
+                    }, {
+                        type: 'checkbox',
+                        name: 'show_title',
+                        label: 'Zobrazit název?',
+                        checked: true
+                    }, {
+                        type: 'checkbox',
+                        name: 'enable_sort',
+                        label: 'Umožnit ruční řazení?',
+                        checked: true
+                    }, {
+                        type: 'checkbox',
+                        name: 'show_pagination',
+                        label: 'Zobrazit stránkování?',
+                        checked: true
+                    }, {
+                        type: 'checkbox',
+                        name: 'enable_ajax',
+                        label: 'Povolit AJAX?',
+                        checked: true
                     }],
                     onsubmit: function( e ) {
                         var ret = '[soubory_ke_stazeni';
+
                         if( e.data.title != "" ) {
                             ret = ret + ' title="' + e.data.title + '"';
                         }
-                        ret = ret + ' show_title="' + ( e.data.show_title === true ? '1' : '0' ) + '"';
-                        
-                        var cnt = Number.parseInt( e.data.count );
-                        if( cnt < 0 ) {
-                            cnt = 0;
-                        }
-                        ret = ret + ' count="' + cnt + '"]';
-                        console.log(e.data);
+
+                        ret += Number.parseInt( e.data.count ) < 0 ? ' count="0"]' : ' count="' + e.data.count + '"';
+                        ret += ' orderby="' + e.data.orderby + '"';
+                        ret += ' show_title="' + ( e.data.show_title === true ? '1' : '0' ) + '"';
+                        ret += ' enable_sort="' + ( e.data.enable_sort === true ? '1' : '0' ) + '"';
+                        ret += ' show_pagination="' + ( e.data.show_pagination === true ? '1' : '0' ) + '"';
+                        ret += ' enable_ajax="' + ( e.data.enable_ajax === true ? '1' : '0' ) + '"';
+                        ret += ']';
+
                         editor.insertContent(ret);
                     }
                 });

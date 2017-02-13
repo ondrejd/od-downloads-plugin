@@ -1,0 +1,41 @@
+<?php
+/**
+ * Template file for shortcode "Soubory ke stažení".
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @package odwp-downloads_plugin
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit();
+}
+
+?><div class="odwpdp-shortcode-help-1">
+    <p><?php 
+    printf( 
+        __( 'Pokud chcete vložit tabulku se soubory ke stažení do stránky či příspěvku použijte tlačítko %s (<b>Soubory ke stažení</b>) nebo vložte kód přímo - v nejjednodušší variantě jen <code>[soubory_ke_stazeni]</code>.', ODWPDP_SLUG ),
+        '<img src="' . plugins_url( 'icon16.png', ODWPDP_FILE ) . '" style="display: inline-block; height: 16px; margin: 0px 5px 0px 5px; position: relative; top: 2px; width: 16px;">'
+    ); ?></p>
+    <h3><?php _e( 'Dialog pro vložení kódu', ODWPDP_SLUG ); ?></h3>
+    <p><?php _e( 'Pomocí výše zmíněného tlačítka vyvoláte dialog pro nastavení vloženého kódu s tabulkou:', ODWPDP_SLUG ); ?></p>
+    <p><img src="<?php echo plugins_url( 'img/shortcode-tinymce-dialog-1.png', ODWPDP_FILE ); ?>" alt="<?php _e( 'Dialog pro vložení kódu', ODWPDP_SLUG ); ?>" style="border-left: 1px solid #ccc; border-top: 1px solid #ccc; box-shadow: 1px 1px 3px #ccc;"></p>
+    <p><?php _e( 'Všechny položky v dialogu jsou volitelné, níže je jejich popis:', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Název</b> — nadpis, který uvodí tabulku se soubory ke stažení. Pokud název není uveden, ale políčko <em>Zobrazit název?</em> je zaškrtnuto, zobrazí se defaultně nadpis <em>Soubory ke stažení</em>.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Počet položek</b> — určuje, kolik souboru ke stažení se má zobrazit (s ohledem na řazení). Pokud je nastaveno na <code>0</code>, jsou zobrazeny všechny definované soubory (takže stránkování není zobrazeno ani pokud je <em>Zobrazit stránkování?</em> zaškrtnuto.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Řadit dle</b> — určuje dle čeho se mají soubory při zobrazení seřadit.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Zobrazit název?</b> — pokud je zaškrtnuto zobrazí se nad tabulkou se soubory ke stažení nadpis.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Povolit ruční řazení?</b> — povolit ruční řazení řádků v tabulce se soubory.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Zobrazit stránkování?</b> — zobrazí stránkování na spodku tabulky (pracuje spolus nastavením <em>Počet položek</em>.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Povolit AJAX?</b> — zapne podporu pro stránkování a řazení jen pomocí JavaScriptu (bez pevných odkazů vedoucích k obnovení stránky). Pokud je toto pole zaškrtnuto aplikuje se pouze pokud je alespoň jedno pole z <em>Zobrazit stránkování?</em> a <em>Umožnit ruční řazení?</em> zaškrtnuto.', ODWPDP_SLUG ); ?></p>
+    <h3><?php _e( 'Ruční vkládání', ODWPDP_SLUG ); ?></h3>
+    <pre><?php _e( "[soubory_ke_stazeni title=\"...\"\n                    show_title=\"1\"\n                    show_pagination=\"1\"\n                    count=\"5\"\n                    orderby=\"title\"\n                    enable_ajax=\"1\"\n                    enable_sort=\"1\"]", ODWPDP_SLUG ); ?></pre>
+    <p><?php _e( 'kde:', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>title</code> — <em>string</em>, název</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>count</code> — <em>integer</em>, počet položek</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>orderby</code> — <em>string</em>, možné hodnoty: <code>title</code>, <code>puton_date</code>, <code>putoff_date</code>.</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>show_title</code> — <em>boolean</em>, zobrazit název?</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>enable_sort</code> — <em>boolean</em>, povolit ruční řazení?</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>show_pagination</code> — <em>boolean</em>, zobrazit stránkování?</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>enable_ajax</code> — <em>boolean</em>, povolit AJAX?</p>', ODWPDP_SLUG ); ?></p>
+</div>

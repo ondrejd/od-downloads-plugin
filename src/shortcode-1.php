@@ -25,10 +25,13 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
     function odwpdp_add_shortcode_1( $atts, $content = null ) {
         // Collect attributes
         $attrs = shortcode_atts( array(
-            'count'      => 0,
-            'title'      => __( 'Soubory ke stažení', ODWPDP_SLUG ),
-            'show_title' => 1,
-            'orderby'    => 'title',
+            'count'           => 5,
+            'title'           => __( 'Soubory ke stažení', ODWPDP_SLUG ),
+            'show_title'      => 1,
+            'show_pagination' => 1,
+            'orderby'         => 'title',
+            'enable_sort'     => 1,
+            'enable_ajax'     => 1,
         ), $atts );
 
         // Get items to show
@@ -73,7 +76,7 @@ if ( ! function_exists( 'odwpdp_add_tinymce_btn_shortcode_1' ) ) :
             add_filter( 'mce_buttons', 'odwpdp_register_tinymce_btn_shortcode_1' );
         }
     }
-    endif;
+endif;
 add_action( 'admin_head', 'odwpdp_add_tinymce_btn_shortcode_1' );
 
 
@@ -104,3 +107,43 @@ if ( ! function_exists( 'odwpdp_register_tinymce_plugin_shortcode_1' ) ) :
     }
 endif;
 
+
+
+if ( ! function_exists( 'odwpdp_add_shortcode_help_1' ) ) :
+/**
+ * Adds the help tabs to the current page
+ */
+function odwpdp_add_shortcode_help_1() {
+    $screen = get_current_screen();
+
+    if ( ! in_array( $screen->post_type, array( 'post', 'page' ) ) ) {
+        return;
+    }
+
+    $screen->add_help_tab( array(
+        'title'    => __( 'Soubory ke stažení', ODWPDP_SLUG ),
+        'id'       => 'odwpdp-shortcode-help-1',
+        'callback' => 'odwpdp_shortcode_help_1'
+    ) );
+
+    $screen->set_help_sidebar( sprintf( '<a href="%s">%s</a>', '#', __( 'Nápověda na wiki projektu', ODWPDP_SLUG ) ) );
+}
+endif;
+
+
+
+if ( ! function_exists( 'odwpdp_shortcode_help_1' ) ) :
+/**
+ * Outputs the content for the 'More About Books' Help Tab
+ */
+function odwpdp_shortcode_help_1() {
+    ob_start( function() {} );
+    include_once( ODWPDP_PATH . '/templates/shortcode-help-1.phtml' );
+    $html = ob_get_flush();
+    echo apply_filters( 'odwpdp-shortcode-help-1', $html );
+}
+endif;
+
+// Register our new help tab
+add_action( 'load-post-new.php', 'odwpdp_add_shortcode_help_1' );
+add_action( 'load-post.php', 'odwpdp_add_shortcode_help_1' );

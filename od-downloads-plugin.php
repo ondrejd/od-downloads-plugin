@@ -81,7 +81,7 @@ if ( ! function_exists( 'odwpdp_custom_post_type' ) ) :
             'exclude_from_search'   => false,
             'publicly_queryable'    => true,
             'capability_type'       => 'page',
-            'menu_icon'             => plugins_url( 'icon16.png', __FILE__ ),
+            'menu_icon'             => plugins_url( 'icon16.png', ODWPDP_FILE ),
         );
         register_post_type( ODWPDP_CPT, $args );
     }
