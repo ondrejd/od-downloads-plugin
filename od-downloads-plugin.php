@@ -28,6 +28,10 @@ defined( 'ODWPDP_ICON_16' ) || define( 'ODWPDP_ICON_16', '16x16' );
 defined( 'ODWPDP_ICON_32' ) || define( 'ODWPDP_ICON_32', '32x32' );
 
 
+// Register custom post types
+// Custom post type "Soubor ke stažení"
+//include_once( ODWPDP_PATH . '/src/custom_post_type-1.php' );
+
 
 if ( ! function_exists( 'odwpdp_custom_post_type' ) ) :
     /**
@@ -177,24 +181,83 @@ if ( !function_exists( 'odwpdp_cpt_columns' ) ) :
     /**
      * Add new columns in "odwpdp-cpt" list in WP admin.
      * @global string $post_type
-     * @param array $defaults
+     * @param array $columns
      * @return array
      */
-    function odwpdp_cpt_columns( $defaults ) {
+    function odwpdp_cpt_columns( $columns ) {
         global $post_type;
 
         if ( $post_type != ODWPDP_CPT ) {
-            return $defaults;
+            return $columns;
         }
 
-        $defaults['odwpdp_file_column'] = __( 'Soubor', ODWPDP_SLUG );
-        $defaults['odwpdp_putup_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
-        $defaults['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
+        $columns['odwpdp_file_column'] = __( 'Soubor', ODWPDP_SLUG );
+        $columns['odwpdp_puton_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
+        $columns['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
 
-        return $defaults;
+        return $columns;
     }
 endif;
-add_filter( 'manage_posts_columns', 'odwpdp_cpt_columns' );
+add_filter( 'manage_edit-odwpdp_cpt_columns', 'odwpdp_cpt_columns' );
+
+
+
+if ( !function_exists( 'odwpdp_cpt_sortable_columns' ) ) :
+    /**
+     * Make some columns sortable.
+     * @global string $post_type
+     * @param array $columns
+     * @return array
+     */
+    function odwpdp_cpt_sortable_columns( $columns ) {
+        global $post_type;
+
+        if ( $post_type != ODWPDP_CPT ) {
+            return $columns;
+        }
+
+        $columns['odwpdp_file_column'] = __( 'Soubor', ODWPDP_SLUG );
+        //$columns['odwpdp_puton_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
+        //$columns['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
+
+        return $columns;
+    }
+endif;
+add_filter( 'manage_edit-odwpdp_cpt_sortable_columns', 'odwpdp_cpt_sortable_columns' );
+
+
+
+if ( !function_exists( 'odwpdp_pre_get_posts' ) ) :
+    /**
+     * @internal
+     * @param WP_Query $query
+     */
+    function odwpdp_pre_get_posts( $query ) {
+        $orderby = $query->get( 'orderby' );
+
+        if ( ! $query->is_main_query() || empty( $orderby ) ) {
+            return;
+        }
+
+        switch( $orderby ) {
+            case 'odwpdp_file_column':
+                $query->set( 'meta_key', 'odwpdp-metabox-3' );
+                $query->set( 'orderby', 'meta_value' );
+                break;
+
+            case 'odwpdp_puton_column':
+                $query->set( 'meta_key', 'odwpdp-metabox-1' );
+                $query->set( 'orderby', 'meta_value' );
+                break;
+
+            case 'odwpdp_putoff_column':
+                $query->set( 'meta_key', 'odwpdp-metabox-2' );
+                $query->set( 'orderby', 'meta_value' );
+                break;
+      }
+    }
+endif;
+add_action( 'pre_get_posts', 'odwpdp_pre_get_posts', 1 );
  
 
 
@@ -205,14 +268,11 @@ if ( !function_exists( 'odwpdp_cpt_columns_content' ) ) :
      */
     function odwpdp_cpt_columns_content( $column_name, $post_id ) {
         if ( $column_name == 'odwpdp_file_column' ) {
-            $val = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
-            /*$post_featured_image = odwpdp_get_thumbnail( $post_id );
-            if ( $post_featured_image) {
-                printf( '<img src="%s">', $post_featured_image );
-            }*/
-            printf( '<code>%s</code>', $val );
+            $file = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
+            $info = odwpdp_get_file_info( $file );
+            printf( '<span><img src="%s" class="odwpdp-file-icon"><code>%s</code></span>', $info['icon_16'], $file );
         }
-        else if ( $column_name == 'odwpdp_putup_column' ) {
+        else if ( $column_name == 'odwpdp_puton_column' ) {
             $val = get_post_meta( $post_id, 'odwpdp-metabox-1', true );
             printf( '<span>%s</span>', $val );
         }

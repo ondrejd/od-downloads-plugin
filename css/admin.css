@@ -6,6 +6,19 @@
  * @package odwp-downloads_plugin
  */
 
+/* Listing */
+.column-odwpdp_puton_column, .column-odwpdp_putoff_column {
+    width: 150px !important;
+}
+td.column-odwpdp_puton_column, td.column-odwpdp_putoff_column {
+    font-size: 90%;
+}
+.odwpdp-file-icon {
+    left: -2px;
+    position: relative;
+    top: 2px;
+}
+
 /* Date input */
 .date-input-group .day {
 	height: 32px;
