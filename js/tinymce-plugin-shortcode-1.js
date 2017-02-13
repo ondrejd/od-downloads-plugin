@@ -14,7 +14,6 @@
             onclick: function() {
                 editor.windowManager.open( {
                     title: 'Vložte soubory ke stažení',
-                    description: 'xxx',
                     body: [{
                         type: 'textbox',
                         name: 'title',
