@@ -33,11 +33,38 @@ class odwpdp_widget_1 extends WP_Widget {
      * @todo Implement "order_by"!
      */
     public function widget( $args, $instance ) {
-        // Get items to show
-        $files = get_posts( array(
+        // WP Query arguments
+        $query_args = array(
             'numberposts' => intval( $instance['count'] ),
-            'post_type'   => ODWPDP_CPT,
-        ) );
+            'post_type' => ODWPDP_CPT,
+        );
+
+        if ( array_key_exists( 'orderby', $instance ) ) {
+            if ( ! in_array( $instance['orderby'], array_keys( $this->get_avail_orderby_vals() ) ) ) {
+                $instance['orderby'] = 'title';
+            }
+
+            if ( $instance['orderby'] == 'title' ) {
+                $query_args['orderby'] = 'title';
+            } else {
+                $query_args['orderby'] = 'meta_value';//meta_value_num
+                $query_args['meta_key'] = $instance['orderby'];
+            }
+
+            if ( ! array_key_exists( 'order', $instance ) ) {
+                $query_args['order'] = 'DESC';
+            }
+            else {
+                if ( in_array( $instance['order'], array_keys( $this->get_avail_order_vals() ) ) ) {
+                    $query_args['order'] = $instance['order'];
+                } else {
+                    $query_args['order'] = 'DESC';
+                }
+            }
+        }
+
+        // Get items to show
+        $files = get_posts( $query_args );
 
         // Render template
         ob_start( function() {} );
@@ -64,26 +91,34 @@ class odwpdp_widget_1 extends WP_Widget {
         $orderby_id   = $this->get_field_id( 'orderby' );
         $orderby_name = $this->get_field_name( 'orderby' );
         $orderby_val  = ! empty( $instance['orderby'] ) ? $instance['orderby'] : 'title';
+        $orderby_val  = in_array( $orderby_val, array_keys( $this->get_avail_orderby_vals() ) ) ? $orderby_val : 'title';
 
-        $orderby_vals = array(
-            'title'       => __( 'Názvu', ODWPDP_SLUG ),
-            'puton_date'  => __( 'Data vystavení', ODWPDP_SLUG ),
-            'putoff_date' => __( 'Data sejmutí', ODWPDP_SLUG ),
-        );
+        $order_id     = $this->get_field_id( 'order' );
+        $order_name   = $this->get_field_name( 'order' );
+        $order_val    = ! empty( $instance['order'] ) ? $instance['order'] : 'ASC';
+        $order_val    = in_array( $order_val, array_keys( $this->get_avail_order_vals() ) ) ? $order_val : 'ASC';
 ?>
 <p>
     <label for="<?php echo esc_attr( $title_id ); ?>"><?php esc_attr_e( 'Název:', ODWPDP_SLUG ); ?></label> 
     <input class="widefat" id="<?php echo esc_attr( $title_id ); ?>" name="<?php echo esc_attr( $title_name ); ?>" type="text" value="<?php echo esc_attr( $title_val ); ?>">
 </p>
 <p>
-    <label for="<?php echo esc_attr( $count_id ); ?>"><?php esc_attr_e( 'Počet položek:', ODWPDP_SLUG ); ?></label> 
+    <label for="<?php echo esc_attr( $count_id ); ?>" class="short-label"><?php esc_attr_e( 'Počet položek:', ODWPDP_SLUG ); ?></label> 
     <input class="tiny-text" id="<?php echo esc_attr( $count_id ); ?>" name="<?php echo esc_attr( $count_name ); ?>" type="number" value="<?php echo esc_attr( $count_val ); ?>" step="1" min="1" size="3">
 </p>
 <p>
-    <label for="<?php echo esc_attr( $orderby_id ); ?>"><?php esc_attr_e( 'Řadit dle:', ODWPDP_SLUG ); ?></label> 
+    <label for="<?php echo esc_attr( $orderby_id ); ?>" class="short-label"><?php esc_attr_e( 'Řadit dle:', ODWPDP_SLUG ); ?></label> 
     <select id="<?php echo esc_attr( $orderby_id ); ?>" name="<?php echo esc_attr( $orderby_name ); ?>"  value="<?php echo esc_attr( $orderby_val ); ?>">
         <?php foreach ( $this->get_avail_orderby_vals() as $val => $name ) : ?>
         <option value="<?php echo $val; ?>" <?php selected( $orderby_val, $val ); ?>><?php echo $name; ?></option>
+        <?php endforeach; ?>
+    </select>
+</p>
+<p>
+    <label for="<?php echo esc_attr( $order_id ); ?>" class="short-label"><?php esc_attr_e( 'Řadit:', ODWPDP_SLUG ); ?></label> 
+    <select id="<?php echo esc_attr( $order_id ); ?>" name="<?php echo esc_attr( $order_name ); ?>"  value="<?php echo esc_attr( $order_val ); ?>">
+        <?php foreach ( $this->get_avail_order_vals() as $val => $name ) : ?>
+        <option value="<?php echo $val; ?>" <?php selected( $order_val, $val ); ?>><?php echo $name; ?></option>
         <?php endforeach; ?>
     </select>
 </p>
@@ -107,9 +142,16 @@ class odwpdp_widget_1 extends WP_Widget {
         $instance['orderby'] = ( ! empty( $new_instance['orderby'] ) ) 
                 ? strip_tags( $new_instance['orderby'] ) 
                 : 'title';
+        $instance['order']   = ( ! empty( $new_instance['order'] ) ) 
+                ? strip_tags( $new_instance['order'] ) 
+                : 'ASC';
 
         if ( ! in_array( $instance['orderby'], array_keys( $this->get_avail_orderby_vals() ) ) ) {
             $instance['orderby'] = 'title';
+        }
+
+        if ( ! in_array( $instance['order'], array_keys( $this->get_avail_order_vals() ) ) ) {
+            $instance['order'] = 'ASC';
         }
 
         return $instance;
@@ -123,6 +165,16 @@ class odwpdp_widget_1 extends WP_Widget {
             'title'       => __( 'Názvu', ODWPDP_SLUG ),
             'puton_date'  => __( 'Data vyvěšení', ODWPDP_SLUG ),
             'putoff_date' => __( 'Data sejmutí', ODWPDP_SLUG ),
+        );
+    }
+
+    /**
+     * @return array Available values for "order" field.
+     */
+    private function get_avail_order_vals() {
+        return array(
+            'DESC' => __( 'Sestupně', ODWPDP_SLUG ),
+            'ASC'  => __( 'Vzestupně', ODWPDP_SLUG ),
         );
     }
 }

@@ -62,3 +62,9 @@ td.column-odwpdp_puton_column, td.column-odwpdp_putoff_column {
 i.odwpdp_shortcode_1-icon {
     background-image: url('../icon16.png');
 }
+
+/* Widget */
+.short-label {
+    display: inline-block;
+    width: 110px;
+}
