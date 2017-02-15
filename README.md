@@ -50,16 +50,20 @@ Using manual download:
 
 ![screen4](screenshot-4.png "screen4")
 
-### Entering our shortcode to the post
+### Live widgets administration
 
 ![screen5](screenshot-5.png "screen5")
+
+### Entering our shortcode to the post
+
+![screen6](screenshot-6.png "screen6")
 
 ### Page with our shortcode and widget displayed
 
 Here with normal desktop resolution:
 
-![screen6](screenshot-6.png "screen6")
+![screen7](screenshot-7.png "screen7")
 
 Here on smaller screen:
 
-![screen7](screenshot-7.png "screen7")
+![screen8](screenshot-8.png "screen8")

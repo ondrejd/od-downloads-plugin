@@ -51,6 +51,7 @@ Yes. You can either attach GA code and track downloads via Google Analytics or u
 5. `screenshot-5.png`
 6. `screenshot-6.png`
 7. `screenshot-7.png`
+7. `screenshot-8.png`
 
 == Changelog ==
 
