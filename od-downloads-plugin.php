@@ -473,3 +473,32 @@ if ( ! function_exists( 'odwpdp_get_file_info' ) ):
         return apply_filters( 'odwpdp-file-info', $info, $file );
     }
 endif;
+
+
+
+if ( ! function_exists( 'odwpdp_get_avail_orderby_vals' ) ):
+    /**
+     * @internal
+     * @return array Available values for "order by" field.
+     */
+    function odwpdp_get_avail_orderby_vals() {
+        return array(
+            'title'       => __( 'Názvu', ODWPDP_SLUG ),
+            'puton_date'  => __( 'Data vyvěšení', ODWPDP_SLUG ),
+            'putoff_date' => __( 'Data sejmutí', ODWPDP_SLUG ),
+        );
+    }
+endif;
+
+if ( ! function_exists( 'odwpdp_get_avail_order_vals' ) ):
+    /**
+     * @internal
+     * @return array Available values for "order" field.
+     */
+    function odwpdp_get_avail_order_vals() {
+        return array(
+            'DESC' => __( 'Sestupně', ODWPDP_SLUG ),
+            'ASC'  => __( 'Vzestupně', ODWPDP_SLUG ),
+        );
+    }
+endif;

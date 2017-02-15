@@ -29,12 +29,20 @@
                         type: 'listbox',
                         name: 'orderby',
                         label: 'Řadit dle',
-                        description: 'Vyberte dle jaké hodnoty se mají soubory řadit.',
                         value: 'title',
                         values: [
                             { text: 'Názvu', value: 'title' },
                             { text: 'Data vyvěšení', value: 'puton_date' },
                             { text: 'Data sejmutí', value: 'putoff_date' }
+                        ]
+                    }, {
+                        type: 'listbox',
+                        name: 'order',
+                        label: 'Řadit',
+                        value: 'ASC',
+                        values: [
+                            { text: 'Sestupně', value: 'DESC' },
+                            { text: 'Vzestupně', value: 'ASC' }
                         ]
                     }, {
                         type: 'checkbox',

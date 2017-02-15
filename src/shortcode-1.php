@@ -30,17 +30,49 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
             'show_title'      => 1,
             'show_pagination' => 1,
             'orderby'         => 'title',
+            'order'           => 'ASC',
             'enable_sort'     => 1,
             'enable_ajax'     => 1,
         ), $atts );
 
-        // Get items to show
-        $args  = array( 'post_type' => ODWPDP_CPT );
+        // Prepare arguments for the query
+        $query_args  = array( 'post_type' => ODWPDP_CPT );
+        // Number of items
         if ( $attrs['count'] > 0 ) {
-            $args['numberposts'] = $attrs['count'];
+            $query_args['numberposts'] = $attrs['count'];
+        }
+        // Ordering
+        if ( array_key_exists( 'orderby', $instance ) ) {
+            if ( ! in_array( $instance['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ) {
+                $instance['orderby'] = 'title';
+            }
+
+            if ( $instance['orderby'] == 'title' ) {
+                $query_args['orderby'] = 'title';
+            } else {
+                $query_args['orderby'] = 'meta_value';//meta_value_num
+                $query_args['meta_key'] = $instance['orderby'];
+            }
+
+            if ( ! array_key_exists( 'order', $instance ) ) {
+                $query_args['order'] = 'DESC';
+            }
+            else {
+                if ( in_array( $instance['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ) {
+                    $query_args['order'] = $instance['order'];
+                } else {
+                    $query_args['order'] = 'DESC';
+                }
+            }
         }
 
-        $files = get_posts( $args );
+        // XXX Pagination
+        $total_count = 0;
+        $page_count = 0;
+        $current_page = 0;
+
+        // Query items to show
+        $files = get_posts( $query_args );
 
         // Render template
         ob_start( function() {} );

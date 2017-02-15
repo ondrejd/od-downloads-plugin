@@ -40,7 +40,7 @@ class odwpdp_widget_1 extends WP_Widget {
         );
 
         if ( array_key_exists( 'orderby', $instance ) ) {
-            if ( ! in_array( $instance['orderby'], array_keys( $this->get_avail_orderby_vals() ) ) ) {
+            if ( ! in_array( $instance['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ) {
                 $instance['orderby'] = 'title';
             }
 
@@ -55,7 +55,7 @@ class odwpdp_widget_1 extends WP_Widget {
                 $query_args['order'] = 'DESC';
             }
             else {
-                if ( in_array( $instance['order'], array_keys( $this->get_avail_order_vals() ) ) ) {
+                if ( in_array( $instance['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ) {
                     $query_args['order'] = $instance['order'];
                 } else {
                     $query_args['order'] = 'DESC';
@@ -91,12 +91,12 @@ class odwpdp_widget_1 extends WP_Widget {
         $orderby_id   = $this->get_field_id( 'orderby' );
         $orderby_name = $this->get_field_name( 'orderby' );
         $orderby_val  = ! empty( $instance['orderby'] ) ? $instance['orderby'] : 'title';
-        $orderby_val  = in_array( $orderby_val, array_keys( $this->get_avail_orderby_vals() ) ) ? $orderby_val : 'title';
+        $orderby_val  = in_array( $orderby_val, array_keys( odwpdp_get_avail_orderby_vals() ) ) ? $orderby_val : 'title';
 
         $order_id     = $this->get_field_id( 'order' );
         $order_name   = $this->get_field_name( 'order' );
         $order_val    = ! empty( $instance['order'] ) ? $instance['order'] : 'ASC';
-        $order_val    = in_array( $order_val, array_keys( $this->get_avail_order_vals() ) ) ? $order_val : 'ASC';
+        $order_val    = in_array( $order_val, array_keys( odwpdp_get_avail_order_vals() ) ) ? $order_val : 'ASC';
 ?>
 <p>
     <label for="<?php echo esc_attr( $title_id ); ?>"><?php esc_attr_e( 'Název:', ODWPDP_SLUG ); ?></label> 
@@ -146,36 +146,15 @@ class odwpdp_widget_1 extends WP_Widget {
                 ? strip_tags( $new_instance['order'] ) 
                 : 'ASC';
 
-        if ( ! in_array( $instance['orderby'], array_keys( $this->get_avail_orderby_vals() ) ) ) {
+        if ( ! in_array( $instance['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ) {
             $instance['orderby'] = 'title';
         }
 
-        if ( ! in_array( $instance['order'], array_keys( $this->get_avail_order_vals() ) ) ) {
+        if ( ! in_array( $instance['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ) {
             $instance['order'] = 'ASC';
         }
 
         return $instance;
-    }
-
-    /**
-     * @return array Available values for "order by" field.
-     */
-    private function get_avail_orderby_vals() {
-        return array(
-            'title'       => __( 'Názvu', ODWPDP_SLUG ),
-            'puton_date'  => __( 'Data vyvěšení', ODWPDP_SLUG ),
-            'putoff_date' => __( 'Data sejmutí', ODWPDP_SLUG ),
-        );
-    }
-
-    /**
-     * @return array Available values for "order" field.
-     */
-    private function get_avail_order_vals() {
-        return array(
-            'DESC' => __( 'Sestupně', ODWPDP_SLUG ),
-            'ASC'  => __( 'Vzestupně', ODWPDP_SLUG ),
-        );
     }
 }
 
