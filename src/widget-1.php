@@ -49,6 +49,7 @@ class odwpdp_widget_1 extends WP_Widget {
             } else {
                 $query_args['orderby'] = 'meta_value';//meta_value_num
                 $query_args['meta_key'] = $instance['orderby'];
+                $query_args['meta_type'] = 'DATE';//['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
             }
 
             if ( ! array_key_exists( 'order', $instance ) ) {

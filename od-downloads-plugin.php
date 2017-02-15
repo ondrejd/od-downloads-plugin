@@ -217,8 +217,8 @@ if ( !function_exists( 'odwpdp_cpt_sortable_columns' ) ) :
         }
 
         $columns['odwpdp_file_column'] = __( 'Soubor', ODWPDP_SLUG );
-        //$columns['odwpdp_puton_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
-        //$columns['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
+        $columns['odwpdp_puton_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
+        $columns['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
 
         return $columns;
     }
@@ -248,11 +248,13 @@ if ( !function_exists( 'odwpdp_pre_get_posts' ) ) :
             case 'odwpdp_puton_column':
                 $query->set( 'meta_key', 'odwpdp-metabox-1' );
                 $query->set( 'orderby', 'meta_value' );
+                $query->set( 'meta_type', 'DATE' );//['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
                 break;
 
             case 'odwpdp_putoff_column':
                 $query->set( 'meta_key', 'odwpdp-metabox-2' );
                 $query->set( 'orderby', 'meta_value' );
+                $query->set( 'meta_type', 'DATE' );//['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
                 break;
       }
     }
