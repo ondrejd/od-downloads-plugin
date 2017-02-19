@@ -30,67 +30,7 @@ defined( 'ODWPDP_ICON_32' ) || define( 'ODWPDP_ICON_32', '32x32' );
 
 // Register custom post types
 // Custom post type "Soubor ke stažení"
-//include_once( ODWPDP_PATH . '/src/custom_post_type-1.php' );
-
-
-if ( ! function_exists( 'odwpdp_custom_post_type' ) ) :
-    /**
-     * Register our custom post type.
-     */
-    function odwpdp_custom_post_type() {
-        $labels = array(
-            'name'                  => _x( 'Soubory ke stažení', 'Post Type General Name', ODWPDP_SLUG ),
-            'singular_name'         => _x( 'Soubor ke stažení', 'Post Type Singular Name', ODWPDP_SLUG ),
-            'menu_name'             => __( 'Soubory', ODWPDP_SLUG ),
-            'name_admin_bar'        => __( 'Vytvořit soubor ke stažení', ODWPDP_SLUG ),
-            'archives'              => __( 'Archív souborů ke stažení', ODWPDP_SLUG ),
-            'attributes'            => __( 'Atributy souboru ke stažení', ODWPDP_SLUG ),
-            'parent_item_colon'     => __( '', ODWPDP_SLUG ),
-            'all_items'             => __( 'Všechny soubory', ODWPDP_SLUG ),
-            'add_new_item'          => __( 'Přidej nový soubor ke stažení', ODWPDP_SLUG ),
-            'add_new'               => __( 'Přidej nový', ODWPDP_SLUG ),
-            'new_item'              => __( 'Nový soubor ke stažení', ODWPDP_SLUG ),
-            'edit_item'             => __( 'Uprav soubor ke stažení', ODWPDP_SLUG ),
-            'update_item'           => __( 'Aktualizuj soubor ke stažení', ODWPDP_SLUG ),
-            'view_item'             => __( 'Zobraz soubor ke stažení', ODWPDP_SLUG ),
-            'view_items'            => __( 'Zobraz soubory ke stažení', ODWPDP_SLUG ),
-            //'search_items'          => __( 'Search Item', ODWPDP_SLUG ),
-            //'not_found'             => __( 'Not found', ODWPDP_SLUG ),
-            //'not_found_in_trash'    => __( 'Not found in Trash', ODWPDP_SLUG ),
-            'featured_image'        => __( 'Ikona souboru', ODWPDP_SLUG ),
-            'set_featured_image'    => __( 'Nastavit ikonu souboru ke stažení', ODWPDP_SLUG ),
-            'remove_featured_image' => __( 'Odebrat ikonu', ODWPDP_SLUG ),
-            'use_featured_image'    => __( 'Použij jako ikonu souboru', ODWPDP_SLUG ),
-            //'insert_into_item'      => __( 'Insert into item', ODWPDP_SLUG ),
-            //'uploaded_to_this_item' => __( 'Uploaded to this item', ODWPDP_SLUG ),
-            //'items_list'            => __( 'Items list', ODWPDP_SLUG ),
-            //'items_list_navigation' => __( 'Items list navigation', ODWPDP_SLUG ),
-            //'filter_items_list'     => __( 'Filter items list', ODWPDP_SLUG ),
-        );
-        $args = array(
-            'label'                 => __( 'Soubor ke stažení', ODWPDP_SLUG ),
-            'description'           => __( 'Soubory, které chcete poskytnout uživatelům ke stažení.', ODWPDP_SLUG ),
-            'labels'                => $labels,
-            'supports'              => array( 'title', 'excerpt', /*'custom-fields', 'thumbnail'*/ ),
-            'taxonomies'            => array( /*'category', 'post_tag'*/ ),
-            'hierarchical'          => false,
-            'public'                => true,
-            'show_ui'               => true,
-            'show_in_menu'          => true,
-            'menu_position'         => 5,
-            'show_in_admin_bar'     => true,
-            'show_in_nav_menus'     => true,
-            'can_export'            => true,
-            'has_archive'           => true,        
-            'exclude_from_search'   => false,
-            'publicly_queryable'    => true,
-            'capability_type'       => 'page',
-            'menu_icon'             => plugins_url( 'icon16.png', ODWPDP_FILE ),
-        );
-        register_post_type( ODWPDP_CPT, $args );
-    }
-endif;
-add_action( 'init', 'odwpdp_custom_post_type', 0 );
+include_once( ODWPDP_PATH . '/src/custom_post_type-1.php' );
 
 
 
@@ -102,23 +42,6 @@ $odwpdp_metaboxes = array(
     1 => __( 'Datum sejmutí', ODWPDP_SLUG ),
     2 => __( 'Nahrát soubor', ODWPDP_SLUG ),
 );
-
-
-
-if ( !function_exists( 'odwpdp_get_thumbnail' ) ) :
-    /**
-     * Add new column in "odwpdp-cpt" list in WP admin.
-     */
-    function odwpdp_get_thumbnail( $post_id ) {
-        $post_thumbnail_id = get_post_thumbnail_id( $post_id );
-
-        if ( $post_thumbnail_id ) {
-            $post_thumbnail_img = wp_get_attachment_image_src( $post_thumbnail_id );
-
-            return $post_thumbnail_img[0];
-        }
-    }
-endif;
 
 
 
@@ -177,117 +100,6 @@ if ( is_admin() === true ) {
 
 
 
-if ( !function_exists( 'odwpdp_cpt_columns' ) ) :
-    /**
-     * Add new columns in "odwpdp-cpt" list in WP admin.
-     * @global string $post_type
-     * @param array $columns
-     * @return array
-     */
-    function odwpdp_cpt_columns( $columns ) {
-        global $post_type;
-
-        if ( $post_type != ODWPDP_CPT ) {
-            return $columns;
-        }
-
-        $columns['odwpdp_file_column'] = __( 'Soubor', ODWPDP_SLUG );
-        $columns['odwpdp_puton_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
-        $columns['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
-
-        return $columns;
-    }
-endif;
-add_filter( 'manage_edit-odwpdp_cpt_columns', 'odwpdp_cpt_columns' );
-
-
-
-if ( !function_exists( 'odwpdp_cpt_sortable_columns' ) ) :
-    /**
-     * Make some columns sortable.
-     * @global string $post_type
-     * @param array $columns
-     * @return array
-     */
-    function odwpdp_cpt_sortable_columns( $columns ) {
-        global $post_type;
-
-        if ( $post_type != ODWPDP_CPT ) {
-            return $columns;
-        }
-
-        $columns['odwpdp_file_column'] = __( 'Soubor', ODWPDP_SLUG );
-        $columns['odwpdp_puton_column'] = __( 'Datum vyvěšení', ODWPDP_SLUG );
-        $columns['odwpdp_putoff_column'] = __( 'Datum sejmutí', ODWPDP_SLUG );
-
-        return $columns;
-    }
-endif;
-add_filter( 'manage_edit-odwpdp_cpt_sortable_columns', 'odwpdp_cpt_sortable_columns' );
-
-
-
-if ( !function_exists( 'odwpdp_pre_get_posts' ) ) :
-    /**
-     * @internal
-     * @param WP_Query $query
-     */
-    function odwpdp_pre_get_posts( $query ) {
-        $orderby = $query->get( 'orderby' );
-
-        if ( ! $query->is_main_query() || empty( $orderby ) ) {
-            return;
-        }
-
-        switch( $orderby ) {
-            case 'odwpdp_file_column':
-                $query->set( 'meta_key', 'odwpdp-metabox-3' );
-                $query->set( 'orderby', 'meta_value' );
-                break;
-
-            case 'odwpdp_puton_column':
-                $query->set( 'meta_key', 'odwpdp-metabox-1' );
-                $query->set( 'orderby', 'meta_value' );
-                $query->set( 'meta_type', 'DATE' );//['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
-                break;
-
-            case 'odwpdp_putoff_column':
-                $query->set( 'meta_key', 'odwpdp-metabox-2' );
-                $query->set( 'orderby', 'meta_value' );
-                $query->set( 'meta_type', 'DATE' );//['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
-                break;
-      }
-    }
-endif;
-add_action( 'pre_get_posts', 'odwpdp_pre_get_posts', 1 );
- 
-
-
-if ( !function_exists( 'odwpdp_cpt_columns_content' ) ) :
-    /**
-     * Render content for logo cell in "odwpdp-cpt" list in WP admin.
-     * @global string $post_type
-     */
-    function odwpdp_cpt_columns_content( $column_name, $post_id ) {
-        if ( $column_name == 'odwpdp_file_column' ) {
-            $file = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
-            $info = odwpdp_get_file_info( $file );
-            printf( '<span><img src="%s" class="odwpdp-file-icon"><code>%s</code></span>', $info['icon_16'], $file );
-        }
-        else if ( $column_name == 'odwpdp_puton_column' ) {
-            $val = get_post_meta( $post_id, 'odwpdp-metabox-1', true );
-            printf( '<span>%s</span>', $val );
-        }
-        else if ( $column_name == 'odwpdp_putoff_column' ) {
-            $val = get_post_meta( $post_id, 'odwpdp-metabox-2', true );
-            printf( '<span>%s</span>', $val );
-        }
-    }
-endif;
-add_action( 'manage_posts_custom_column', 'odwpdp_cpt_columns_content', 10, 2 );
-
-
-
 if ( !function_exists( 'odwpdp_admin_scripts' ) ) :
     /**
      * Append our CSS styles and Javascripts for the WP admin.
@@ -309,7 +121,7 @@ if ( !function_exists( 'odwpdp_admin_scripts' ) ) :
         }
 
         wp_enqueue_style( 'odwpdp-admin-css', plugins_url( '/css/admin.css', ODWPDP_FILE ) );
-        wp_enqueue_script( 'odwpdp-admin-js', plugins_url( '/js/admin.js', ODWPDP_FILE ) );
+        wp_enqueue_script( 'odwpdp-admin-js', plugins_url( '/js/admin.js', ODWPDP_FILE ), array( 'jquery' ) );
     }
 endif;
 add_action( 'admin_enqueue_scripts', 'odwpdp_admin_scripts' );
@@ -319,8 +131,55 @@ add_action( 'admin_enqueue_scripts', 'odwpdp_admin_scripts' );
 if ( !function_exists( 'odwpdp_public_scripts' ) ) :
     /**
      * Append our CSS styles and JavaScripts for the front-end.
+     * @global WP_Scripts $wp_scripts
      */
     function odwpdp_public_scripts() {
+        global $wp_scripts;
+ 
+        // load jQuery UI
+        wp_enqueue_script( 'jquery-ui-core' );
+        wp_enqueue_script( 'jquery-ui-widget' );
+        wp_enqueue_script( 'jquery-ui-mouse' );
+        wp_enqueue_script( 'jquery-ui-accordion' );
+        wp_enqueue_script( 'jquery-ui-autocomplete' );
+        wp_enqueue_script( 'jquery-ui-slider' );
+        wp_enqueue_script( 'jquery-ui-tabs' );
+        wp_enqueue_script( 'jquery-ui-sortable' );
+        wp_enqueue_script( 'jquery-ui-draggable' );
+        wp_enqueue_script( 'jquery-ui-droppable' );
+        wp_enqueue_script( 'jquery-ui-datepicker' );
+        wp_enqueue_script( 'jquery-ui-resize' );
+        wp_enqueue_script( 'jquery-ui-dialog' );
+        wp_enqueue_script( 'jquery-ui-button' );
+        wp_enqueue_script( 'jquery-effects-core' );
+
+        // load jQuery.fileDownload
+        wp_enqueue_script(
+                'odwpdp-jquery-fileDownload',
+                plugins_url( '/js/jquery.fileDownload.js', ODWPDP_FILE),
+                array( 'jquery' )
+        );
+
+        // load our JavaScript
+        wp_enqueue_script(
+                'odwpdp-public-js',
+                plugins_url( '/js/public.js', ODWPDP_FILE ),
+                array( 'odwpdp-jquery-fileDownload' )
+        );
+        // and localize it...
+        wp_localize_script( 'odwpdp-public-js', 'odwpdp_data', array(
+            'ajax_download_url' => admin_url( 'admin-ajax.php' ),
+            'ajax_nonce' => wp_create_nonce( 'updates' ),
+            'l10n' => array()
+        ) );
+
+        // load the jquery ui theme
+        $queryui = $wp_scripts->query( 'jquery-ui-core' );
+        $protocol = is_ssl() ? 'https://' : 'http://';
+        $url = "{$protocol}ajax.googleapis.com/ajax/libs/jqueryui/{$queryui->ver}/themes/smoothness/jquery-ui.css";
+
+        wp_register_style( 'jquery-ui', $url );
+        wp_enqueue_style( 'jquery-ui' );
         wp_enqueue_style( 'odwpdp-public-css', plugins_url( '/css/public.css', ODWPDP_FILE ) );
     }
 endif;
@@ -383,23 +242,6 @@ include_once( ODWPDP_PATH . '/src/shortcode-1.php' );
 
 
 
-if ( ! function_exists( 'odwpdp_get_file_url' ) ) :
-    /**
-     * @internal
-     * @param string $file File name.
-     * @return string URL of download link.
-     */
-    function odwpdp_get_file_url( $file ) {
-        if ( empty( $file ) ) {
-            return '#';
-        }
-
-        return content_url( ODWPDP_UPLOADS . "/{$file}" );
-    }
-endif;
-
-
-
 if ( ! function_exists( 'odwpdp_get_file_icon' ) ):
     /**
      * @internal
@@ -440,7 +282,8 @@ if ( ! function_exists( 'odwpdp_get_file_info' ) ):
      * <p>Info array contains these keys:</p>
      * <ul>
      *   <li><code>exist</code>; <i>boolean</i>, <i>true</i> if file exists</li>
-     *   <li><code>file</code>; <i>string</i>, file name</li>
+     *   <li><code>ext</code>; <i>string</i>, file's extension</li>
+     *   <li><code>file</code>; <i>string</i>, file's name</li>
      *   <li><code>icon_16</code>; <i>string</i>, 16x16 icon by file type</li>
      *   <li><code>icon_32</code>; <i>string</i>, 32x32 icon by file type</li>
      *   <li><code>path</code>; <i>string</i>, full file path</li>
@@ -448,29 +291,31 @@ if ( ! function_exists( 'odwpdp_get_file_info' ) ):
      *   <li><code>url</code>; <i>string</i>,  URL for download link</li>
      * </ul>
      *
-     * @param string $file
+     * @param integer $post_id
      * @return array Array with file info.
      * @uses odwpdp_get_file_url()
      * @uses odwpdp_get_file_icon()
      */
-    function odwpdp_get_file_info( $file ) {
+    function odwpdp_get_file_info( $post_id ) {
+        $file = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
         $info = array(
             'exist'     => false,
+            'ext'       => null,
             'file'      => $file,
             'icon_16'   => null,
             'icon_32'   => null,
             'path'      => null,
             'size'      => null,
-            'url'       => odwpdp_get_file_url( $file ),
+            'url'      => plugins_url( 'download-file.php', ODWPDP_FILE ) . '?post_id=' . $post_id,
         );
         $upload_dir      = wp_upload_dir();
-        $info['path']    = sprintf( '%s/%s/%s', $upload_dir['basedir'], ODWPDP_SLUG, $file );
+        $info['path']    = empty( $file ) ? '' : sprintf( '%s/%s/%s', $upload_dir['basedir'], ODWPDP_SLUG, $file );
         $info['exist']   = file_exists( $info['path'] );
         $info['size']    = size_format( filesize( $info['path'] ), 2);
         $file_ext_arr    = strpos( $file, '.' ) !== false ? explode( '.', $file ) : array();
-        $file_ext        = count( $file_ext_arr ) == 0 ? '' : $file_ext_arr[count( $file_ext_arr ) - 1];
-        $info['icon_16'] = odwpdp_get_file_icon( $file_ext );
-        $info['icon_32'] = odwpdp_get_file_icon( $file_ext, ODWPDP_ICON_32 );
+        $info['ext']     = count( $file_ext_arr ) == 0 ? '' : $file_ext_arr[count( $file_ext_arr ) - 1];
+        $info['icon_16'] = odwpdp_get_file_icon( $info['ext'] );
+        $info['icon_32'] = odwpdp_get_file_icon( $info['ext'], ODWPDP_ICON_32 );
 
         return apply_filters( 'odwpdp-file-info', $info, $file );
     }
@@ -492,6 +337,8 @@ if ( ! function_exists( 'odwpdp_get_avail_orderby_vals' ) ):
     }
 endif;
 
+
+
 if ( ! function_exists( 'odwpdp_get_avail_order_vals' ) ):
     /**
      * @internal
@@ -504,3 +351,82 @@ if ( ! function_exists( 'odwpdp_get_avail_order_vals' ) ):
         );
     }
 endif;
+
+
+
+if ( ! function_exists( 'odwpdp_get_download_url' ) ):
+    /**
+     * @param WP_Post|integer $post Post object or post's ID.
+     * @return XXX ...
+     */
+    function odwpdp_get_download_url( $post ) {
+        $post_id = ( $post instanceof WP_Post ) ? $post->ID : intval( $post );
+        // ...
+    }
+endif;
+
+
+
+if ( ! function_exists( 'odwpdp_download_via_ajax' ) ):
+    /**
+     * Handle request for download.
+     * @return void
+     * @todo Add correct `Content-type` for more file types!
+     * @todo Track unsuccessfull download attempts!
+     */
+    function odwpdp_download_via_ajax() {
+        $data    = filter_input( INPUT_POST, 'data', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
+        $post_id = false;
+
+        if ( is_array( $data ) ) {
+            if ( array_key_exists( 'post_id', $data ) ) {
+                $post_id = (int) $data['post_id'];
+            }
+        }
+
+        // Post's ID is not defined
+        if ( $post_id === false || empty( $post_id ) ) {
+            echo wp_json_encode( array(
+                'message' => __( 'Nebylo zadáno ID souboru ke stažení!', ODWPDP_SLUG ),
+            ) );
+            wp_die();
+        }
+
+        // Get file name and more informations about it
+        $file = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
+        $info = odwpdp_get_file_info( $file );
+
+        // File doesn't exist
+        if ( $info['exist'] !== true || empty( $info['path'] ) || ! is_readable( $info['path'] ) ) {
+            echo wp_json_encode( array(
+                'message' => __( 'Omlouváme se, ale soubor ke stažení nebyl nalezen!', ODWPDP_SLUG ),
+            ) );
+            wp_die();
+        }
+
+        // Updates download counter
+        odwpdp_increase_downloads_count( $post_id );
+
+        // Provide file for download
+        header( 'Content-Description: File Transfer' );
+
+        switch ( $info['ext'] ) {
+            case 'pdf':
+                header( 'Content-type: application/pdf' );
+                break;
+
+            default:
+                header( 'Content-Type: application/octet-stream' );
+                break;
+        }
+
+        header( 'Content-Disposition: attachment; filename="' . $file . '"' );
+        header( 'Expires: 0' );
+        header( 'Cache-Control: must-revalidate' );
+        header( 'Pragma: public' );
+        header( 'Content-Length: ' . filesize( $info['path'] ) );
+        readfile( $info['path'] );
+        wp_die();
+    }
+endif;
+add_action( 'wp_ajax_odwpdp_download', 'odwpdp_download_via_ajax' );

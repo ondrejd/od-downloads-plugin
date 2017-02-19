@@ -37,40 +37,40 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
 
         // Prepare arguments for the query
         $query_args  = array( 'post_type' => ODWPDP_CPT );
+
         // Number of items
-        if ( $attrs['count'] > 0 ) {
+        if ( (int) $attrs['count'] > 0 ) {
             $query_args['numberposts'] = $attrs['count'];
         }
+
         // Ordering
-        if ( array_key_exists( 'orderby', $instance ) ) {
-            if ( ! in_array( $instance['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ) {
-                $instance['orderby'] = 'title';
-            }
+        if ( ! in_array( $attrs['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ) {
+            $attrs['orderby'] = 'title';
+        }
 
-            if ( $instance['orderby'] == 'title' ) {
-                $query_args['orderby'] = 'title';
-            } else {
-                $query_args['orderby'] = 'meta_value';//meta_value_num
-                $query_args['meta_key'] = $instance['orderby'];
-                $query_args['meta_type'] = 'DATE';//['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
-            }
+        if ( $attrs['orderby'] == 'title' ) {
+            $query_args['orderby'] = 'title';
+        } else {
+            $query_args['orderby'] = 'meta_value';//meta_value_num
+            $query_args['meta_key'] = $attrs['orderby'];
+            //['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
+            $query_args['meta_type'] = 'DATE';
+        }
 
-            if ( ! array_key_exists( 'order', $instance ) ) {
-                $query_args['order'] = 'DESC';
-            }
-            else {
-                if ( in_array( $instance['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ) {
-                    $query_args['order'] = $instance['order'];
-                } else {
-                    $query_args['order'] = 'DESC';
-                }
-            }
+        if ( in_array( $attrs['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ) {
+            $query_args['order'] = $attrs['order'];
+        } else {
+            $query_args['order'] = 'DESC';
         }
 
         // XXX Pagination
-        $total_count = 0;
-        $page_count = 0;
-        $current_page = 0;
+        $pagination = false;
+        if ( (int) $attrs['count'] > 0 ) {
+            $pagination   = true;
+            $total_count  = 0;
+            $page_count   = 0;
+            $current_page = 0;
+        }
 
         // Query items to show
         $files = get_posts( $query_args );

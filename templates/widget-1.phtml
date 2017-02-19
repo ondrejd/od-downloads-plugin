@@ -35,8 +35,7 @@ if ( ! empty( $instance['title'] ) ) {
         <?php foreach ( $files as $file ) :
             $puton_date  = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
             $putoff_date = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
-            $file_name   = get_post_meta( $file->ID, 'odwpdp-metabox-3', true );
-            $file_info   = odwpdp_get_file_info( $file_name );
+            $file_info   = odwpdp_get_file_info( $file->ID );
         ?>
         <li>
             <span class="file-info-cont file-info-cont-small">

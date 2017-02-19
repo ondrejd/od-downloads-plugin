@@ -32,25 +32,22 @@ if ( ! defined( 'ABSPATH' ) ) {
         </thead>
         <tbody>
         <?php foreach ( $files as $file ) :
-            $puton_date  = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
-            $putoff_date = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
-            $file_name   = get_post_meta( $file->ID, 'odwpdp-metabox-3', true );
-            $file_info   = odwpdp_get_file_info( $file_name );
+            $puton_date   = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
+            $putoff_date  = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
+            $file_info    = odwpdp_get_file_info( $file->ID );
         ?>
             <tr>
                 <th scope="row">
                     <div class="file-info-cont">
                         <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon">
-                        <?php printf(
-                            '<span class="file-info">' .
-                                '<a href="%s" class="file-link">%s</a><br>' .
-                                '<span class="file-size">%s %s</span>' .
-                            '</span>',
-                            $file_info['url'],
-                            $file->post_title,
-                            __( 'Velikost:', ODWPDP_SLUG ),
-                            $file_info['size']
-                        ); ?>
+                        <span class="file-info">
+                            <?php printf(
+                                    '<a href="%s" class="file-link">%s</a><br><span class="file-size">%s %s</span>',
+                                    $file_info['url'],
+                                    $file->post_title,
+                                    __( 'Velikost:', ODWPDP_SLUG ), $file_info['size']
+                            ); ?>
+                        </span>
                 </th>
                 <td>
                     <?php if ( ! empty( $puton_date ) ) : ?>
