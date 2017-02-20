@@ -131,9 +131,8 @@ if ( !function_exists( 'odwpdp_cpt_columns_content' ) ) :
      */
     function odwpdp_cpt_columns_content( $column_name, $post_id ) {
         if ( $column_name == 'odwpdp_file_column' ) {
-            $file = get_post_meta( $post_id, 'odwpdp-metabox-3', true );
-            $info = odwpdp_get_file_info( $file );
-            printf( '<span><img src="%s" class="odwpdp-file-icon"><code>%s</code></span>', $info['icon_16'], $file );
+            $file = odwpdp_get_file_info( $post_id );
+            printf( '<span><img src="%s" class="odwpdp-file-icon"><code>%s</code></span>', $file['icon_16'], $file['file'] );
         }
         else if ( $column_name == 'odwpdp_puton_column' ) {
             $val = get_post_meta( $post_id, 'odwpdp-metabox-1', true );
