@@ -5,49 +5,94 @@
  * @author  Ondřej Doněk, <ondrejd@gmail.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
  * @package odwp-downloads_plugin
+ * 
+ * @todo Format dates by WordPress inner function!
+ * 
+ * Used variables (initialized in {@see odwpdp_add_shortcode_1()}).
+ *
+ * @var array    $attrs
+ * @var string   $current_url
+ * @var WP_Query $query
+ * @var integer  $odwpdp_paged
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit();
 }
 
-/**
- * Used parameters (taken from {@see odwpdp_add_shortcode_1()}).
- *
- * @param array $attrs
- * @param array $files
- */
+$self_url = $current_url . '?odwpdp_paged=' . $odwpdp_paged;
 
-?><div id="odwpdp-shortcode-1">
+/**
+ * @internal Prints order arrows in files table head.
+ * @param string $url
+ * @param array  $atrs
+ * @param string $cur
+ * @return void
+ */
+function print_order( $url, $atrs, $cur ) {
+?>
+<span class="order-icons">
+    <?php if ( $atrs['orderby'] == $cur && $atrs['order'] == 'ASC' ) : ?>
+    <span title="<?php _e( 'Seřazeno vzestupně', ODWPDP_SLUG ); ?>" class="arrow-up used-order"></span>
+    <?php  else : ?>
+    <a href="<?php echo $url . '&amp;odwpdp_orderby=' . $cur . '&amp;odwpdp_order=ASC'; ?>" title="<?php _e( 'Seřadit vzestupně', ODWPDP_SLUG ); ?>" class="arrow-up"></a>
+    <?php endif; ?>
+    <?php if ( $atrs['orderby'] == $cur && $atrs['order'] == 'DESC' ) : ?>
+    <span title="<?php _e( 'Seřazeno sestupně', ODWPDP_SLUG ); ?>" class="arrow-down used-order"></span>
+    <?php else : ?>
+    <a href="<?php echo $url . '&amp;odwpdp_orderby=' . $cur . '&amp;odwpdp_order=DESC'; ?>" title="<?php _e( 'Seřadit sestupně', ODWPDP_SLUG ); ?>" class="arrow-down"></a>
+    <?php endif; ?>
+</span>
+<?php
+}
+
+?><div class="odwpdp-shortcode-1">
     <?php if ( (bool) $attrs['show_title'] === true && ! empty( $attrs['title'] ) ) : ?>
     <h2 class="odwpdp-shortcode-1-title"><?php echo esc_html( $attrs['title'] ); ?></h2>
     <?php endif;?>
     <table class="files-table">
         <thead>
             <tr>
-                <th scope="col"><?php _e( 'Název', ODWPDP_SLUG ); ?>
-                <th scope="col"><?php _e( 'Datum vyvěšení', ODWPDP_SLUG ); ?>
-                <th scope="col"><?php _e( 'Datum stažení', ODWPDP_SLUG ); ?>
+                <th scope="col">
+                    <span class="col-title"><?php _e( 'Název a velikost souboru', ODWPDP_SLUG ); ?></span>
+                    <?php if ( $attrs['enable_sort'] === true ) : ?>
+                        <?php print_order( $self_url, $attrs, 'title' ); ?>
+                    <?php endif; ?>
+                </th>
+                <th scope="col">
+                    <span class="col-title"><?php _e( 'Datum vyvěšení', ODWPDP_SLUG ); ?></span>
+                    <?php if ( $attrs['enable_sort'] === true ) : ?>
+                        <?php print_order( $self_url, $attrs, 'puton_date' ); ?>
+                    <?php endif; ?>
+                </th>
+                <th scope="col">
+                    <span class="col-title"><?php _e( 'Datum stažení', ODWPDP_SLUG ); ?></span>
+                    <?php if ( $attrs['enable_sort'] === true ) : ?>
+                        <?php print_order( $self_url, $attrs, 'putoff_date' ); ?>
+                    <?php endif; ?>
+                </th>
             </tr>
         </thead>
         <tbody>
-        <?php foreach ( $files as $file ) :
-            $puton_date   = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
-            $putoff_date  = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
-            $file_info    = odwpdp_get_file_info( $file->ID );
-        ?>
+        <?php if ($query->have_posts()) : ?>
+            <?php while ($query->have_posts()) : 
+                $query->the_post();
+                $puton_date   = get_post_meta( get_the_ID(), 'odwpdp-metabox-1', true );
+                $putoff_date  = get_post_meta( get_the_ID(), 'odwpdp-metabox-2', true );
+                $file_info    = odwpdp_get_file_info( get_the_ID() ); ?>
             <tr>
                 <th scope="row">
                     <div class="file-info-cont">
                         <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon">
                         <span class="file-info">
                             <?php printf(
-                                    '<a href="%s" class="file-link">%s</a><br><span class="file-size">%s %s</span>',
-                                    $file_info['url'],
-                                    $file->post_title,
-                                    __( 'Velikost:', ODWPDP_SLUG ), $file_info['size']
+                                '<a href="%s" class="file-link">%s</a><br><span class="file-size">%s %s</span>',
+                                $file_info['url'],
+                                get_the_title(),
+                                __( 'Velikost:', ODWPDP_SLUG ), $file_info['size']
                             ); ?>
                         </span>
+                    </div>
                 </th>
                 <td>
                     <?php if ( ! empty( $puton_date ) ) : ?>
@@ -60,7 +105,50 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <?php endif; ?>
                 </td>
             </tr>
-        <?php endforeach; ?>
+            <?php 
+            $query->reset_postdata();
+            endwhile; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="3" class="no_items-row">
+                    <p><?php _e( 'Nebyly nalezeny žádné soubory ke stažení.', ODWPDP_SLUG ); ?></p>
+                </td>
+            </tr>
+        <?php endif; ?>
         </tbody>
+        <?php if ( $attrs['show_pagination'] === true && $query->max_num_pages > 0 ) : ?>
+        <tfoot>
+            <tr>
+                <td>
+                    <?php printf( __( 'Celkem zobrazeno %d z %d položek.', ODWPDP_SLUG ), $query->post_count, $query->found_posts ); ?>
+                </td>
+                <td colspan="2">
+                    <div class="pagination">
+                        <?php if ( $odwpdp_paged <= 1 ) : ?>
+                        <span title="<?php _e( 'První stránka', ODWPDP_SLUG ); ?>"><span>&laquo;</span></span>
+                        <span title="<?php _e( 'Předchozí stránka', ODWPDP_SLUG ); ?>"><span>&lsaquo;</span></span>
+                        <?php else : ?>
+                        <a href="<?php echo $current_url . '?odwpdp_paged=1'; ?>" title="<?php _e( 'První stránka', ODWPDP_SLUG ); ?>"><span>&laquo;</span></a>
+                        <a href="<?php echo $current_url . '?odwpdp_paged=' . ( $odwpdp_paged - 1 ); ?>" title="<?php _e( 'Předchozí stránka', ODWPDP_SLUG ); ?>"><span>&lsaquo;</span></a>
+                        <?php endif; ?>
+                        <?php for ( $i = 1; $i <= $query->max_num_pages; $i++ ) : ?>
+                        <?php if ( $odwpdp_paged == $i ) : ?>
+                        <span title="<?php _e( 'Aktuální stránka', ODWPDP_SLUG ); ?>"><span><?php echo $i; ?></span></span>
+                        <?php else : ?>
+                        <a href="<?php echo $current_url . '?odwpdp_paged=' . $i; ?>" title="<?php printf( __( 'Stránka číslo %d', ODWPDP_SLUG ), $i ); ?>"><span><?php echo $i; ?></span></a>
+                        <?php endif; ?>
+                        <?php endfor; ?>
+                        <?php if ( $odwpdp_paged >= $query->max_num_pages ) : ?>
+                        <span title="<?php _e( 'Následující stránka', ODWPDP_SLUG ); ?>"><span>&rsaquo;</span></span>
+                        <span title="<?php _e( 'Poslední stránka', ODWPDP_SLUG ); ?>"><span>&raquo;</span></span>
+                        <?php else : ?>
+                        <a href="<?php echo $current_url . '?odwpdp_paged=' . ( $odwpdp_paged + 1 ); ?>" title="<?php _e( 'Následující stránka', ODWPDP_SLUG ); ?>"><span>&rsaquo;</span></a>
+                        <a href="<?php echo $current_url . '?odwpdp_paged=' . $query->max_num_pages; ?>" title="<?php _e( 'Poslední stránka', ODWPDP_SLUG ); ?>"><span>&raquo;</span></a>
+                        <?php endif; ?>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+        <?php endif; ?>
     </table>
 </div>

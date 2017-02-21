@@ -18,11 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
     /**
      * Register shortcode "Soubory ke stažení".
+     * @link https://developer.wordpress.org/reference/classes/wp_query/
+     * @link https://www.smashingmagazine.com/2013/01/using-wp_query-wordpress/
      * @param array $atts
      * @param string $content (Optional.)
      * @return string
+     * 
+     * @todo Default count should be set via user preferences!
      */
-    function odwpdp_add_shortcode_1( $atts, $content = null ) {
+    function odwpdp_add_shortcode_1( $atts, $content = null ) {    
+        global $wp;
+
         // Collect attributes
         $attrs = shortcode_atts( array(
             'count'           => 5,
@@ -35,51 +41,53 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
             'enable_ajax'     => 1,
         ), $atts );
 
-        // Prepare arguments for the query
-        $query_args  = array( 'post_type' => ODWPDP_CPT );
+        // Sanitize attributes
+        $attrs['count'] = (int) $attrs['count'] <= 0 ? -1 : (int) $attrs['count'];
+        $attrs['show_title'] = (bool) $attrs['show_title'];
+        $attrs['show_pagination'] = (bool) $attrs['show_pagination'];
+        $attrs['enable_sort'] = (bool) $attrs['enable_sort'];
+        $attrs['enable_ajax'] = (bool) $attrs['enable_ajax'];
+        $attrs['enable_ajax'] = ( !$attrs['show_pagination'] && !$attrs['enable_sort'] ) ? false : $attrs['enable_ajax'];
+        $orderby = filter_input( INPUT_GET, 'odwpdp_orderby' );
+        $order = filter_input( INPUT_GET, 'odwpdp_order' );
+        
+        $attrs['orderby'] = isset( $_GET['odwpdp_orderby'] ) ? $_GET['odwpdp_orderby'] : $attrs['orderby'];
+        $attrs['order'] = isset( $_GET['odwpdp_order'] ) ? $_GET['odwpdp_order'] : $attrs['order'];
+        $attrs['orderby'] = ! in_array( $attrs['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ? 'title' : $attrs['orderby'];
+        $attrs['order'] = ! in_array( $attrs['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ? 'DESC' : $attrs['order'];
 
-        // Number of items
-        if ( (int) $attrs['count'] > 0 ) {
-            $query_args['numberposts'] = $attrs['count'];
-        }
+        // Prepare query arguments
+        $query_args = array();
+        $query_args['post_type'] = ODWPDP_CPT;
+        $query_args['nopaging']  = ! $attrs['show_pagination'];
+        $query_args['numberposts'] = $attrs['count'];
+        $query_args['orderby'] = ( $attrs['orderby'] == 'title' ) ? 'title' : 'meta_value';
+        $query_args['order'] = $attrs['order'];
 
-        // Ordering
-        if ( ! in_array( $attrs['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ) {
-            $attrs['orderby'] = 'title';
-        }
-
-        if ( $attrs['orderby'] == 'title' ) {
-            $query_args['orderby'] = 'title';
-        } else {
-            $query_args['orderby'] = 'meta_value';//meta_value_num
-            $query_args['meta_key'] = $attrs['orderby'];
-            //['NUMERIC','BINARY','CHAR','DATE','DATETIME','DECIMAL','SIGNED','TIME','UNSIGNED']
+        if ( $query_args['orderby'] == 'meta_value' ) {
+            $query_args['meta_key']  = $attrs['orderby'];
             $query_args['meta_type'] = 'DATE';
         }
 
-        if ( in_array( $attrs['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ) {
-            $query_args['order'] = $attrs['order'];
-        } else {
-            $query_args['order'] = 'DESC';
-        }
+        $odwpdp_paged = (int) filter_input( INPUT_GET, 'odwpdp_paged', FILTER_VALIDATE_INT );
+        $query_args['paged'] = max( 1, $odwpdp_paged );
 
-        // XXX Pagination
-        $pagination = false;
-        if ( (int) $attrs['count'] > 0 ) {
-            $pagination   = true;
-            $total_count  = 0;
-            $page_count   = 0;
-            $current_page = 0;
-        }
+        // Create query
+        $query = new WP_Query( $query_args );
 
-        // Query items to show
-        $files = get_posts( $query_args );
+        // Current URL
+        $current_url = home_url( add_query_arg( array(), $wp->request ) );
 
         // Render template
         ob_start( function() {} );
         include_once( ODWPDP_PATH . '/templates/shortcode-1.phtml' );
-        $html = ob_get_flush();
-        return apply_filters( 'odwpdp-shortcode-1', $html );
+        $out = ob_get_flush();
+        $html = apply_filters( 'odwpdp-shortcode-1', $out );
+
+        // Reset WP query and post data
+        wp_reset_postdata();
+
+        return $html;
     }
 endif;
 add_shortcode( 'soubory_ke_stazeni', 'odwpdp_add_shortcode_1' );

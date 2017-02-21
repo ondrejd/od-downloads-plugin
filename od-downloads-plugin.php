@@ -131,41 +131,10 @@ add_action( 'admin_enqueue_scripts', 'odwpdp_admin_scripts' );
 if ( !function_exists( 'odwpdp_public_scripts' ) ) :
     /**
      * Append our CSS styles and JavaScripts for the front-end.
-     * @global WP_Scripts $wp_scripts
      */
     function odwpdp_public_scripts() {
-        global $wp_scripts;
- 
-        // load jQuery UI
-        wp_enqueue_script( 'jquery-ui-core' );
-        wp_enqueue_script( 'jquery-ui-widget' );
-        wp_enqueue_script( 'jquery-ui-mouse' );
-        wp_enqueue_script( 'jquery-ui-accordion' );
-        wp_enqueue_script( 'jquery-ui-autocomplete' );
-        wp_enqueue_script( 'jquery-ui-slider' );
-        wp_enqueue_script( 'jquery-ui-tabs' );
-        wp_enqueue_script( 'jquery-ui-sortable' );
-        wp_enqueue_script( 'jquery-ui-draggable' );
-        wp_enqueue_script( 'jquery-ui-droppable' );
-        wp_enqueue_script( 'jquery-ui-datepicker' );
-        wp_enqueue_script( 'jquery-ui-resize' );
-        wp_enqueue_script( 'jquery-ui-dialog' );
-        wp_enqueue_script( 'jquery-ui-button' );
-        wp_enqueue_script( 'jquery-effects-core' );
-
-        // load jQuery.fileDownload
-        wp_enqueue_script(
-                'odwpdp-jquery-fileDownload',
-                plugins_url( '/js/jquery.fileDownload.js', ODWPDP_FILE),
-                array( 'jquery' )
-        );
-
         // load our JavaScript
-        wp_enqueue_script(
-                'odwpdp-public-js',
-                plugins_url( '/js/public.js', ODWPDP_FILE ),
-                array( 'odwpdp-jquery-fileDownload' )
-        );
+        wp_enqueue_script( 'odwpdp-public-js', plugins_url( '/js/public.js', ODWPDP_FILE ), array( 'jquery' ) );
         // and localize it...
         wp_localize_script( 'odwpdp-public-js', 'odwpdp_data', array(
             'ajax_download_url' => admin_url( 'admin-ajax.php' ),
@@ -173,13 +142,6 @@ if ( !function_exists( 'odwpdp_public_scripts' ) ) :
             'l10n' => array()
         ) );
 
-        // load the jquery ui theme
-        $queryui = $wp_scripts->query( 'jquery-ui-core' );
-        $protocol = is_ssl() ? 'https://' : 'http://';
-        $url = "{$protocol}ajax.googleapis.com/ajax/libs/jqueryui/{$queryui->ver}/themes/smoothness/jquery-ui.css";
-
-        wp_register_style( 'jquery-ui', $url );
-        wp_enqueue_style( 'jquery-ui' );
         wp_enqueue_style( 'odwpdp-public-css', plugins_url( '/css/public.css', ODWPDP_FILE ) );
     }
 endif;

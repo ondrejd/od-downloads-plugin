@@ -7,19 +7,17 @@
  * @package odwp-downloads_plugin
  * 
  * @todo Format dates by WordPress inner function!
+ * 
+ * Used variables (initialized in {@see odwpdp_widget_1::widget()}).
+ *
+ * @var array $args
+ * @var array $instance
+ * @var array $files
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit();
 }
-
-/**
- * Used parameters (taken from {@see odwpdp_widget_1::widget()}).
- *
- * @param array $args
- * @param array $instance
- * @param array $files
- */
 
 // Starts widget
 echo $args['before_widget'];
