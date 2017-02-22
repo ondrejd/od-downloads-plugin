@@ -60,7 +60,7 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
         $query_args = array();
         $query_args['post_type'] = ODWPDP_CPT;
         $query_args['nopaging']  = ! $attrs['show_pagination'];
-        $query_args['numberposts'] = $attrs['count'];
+        $query_args['posts_per_page'] = $attrs['count'];
         $query_args['orderby'] = ( $attrs['orderby'] == 'title' ) ? 'title' : 'meta_value';
         $query_args['order'] = $attrs['order'];
 
