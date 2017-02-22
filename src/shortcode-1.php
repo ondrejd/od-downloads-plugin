@@ -20,6 +20,7 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
      * Register shortcode "Soubory ke stažení".
      * @link https://developer.wordpress.org/reference/classes/wp_query/
      * @link https://www.smashingmagazine.com/2013/01/using-wp_query-wordpress/
+     * @link http://www.billerickson.net/code/wp_query-arguments/
      * @param array $atts
      * @param string $content (Optional.)
      * @return string
