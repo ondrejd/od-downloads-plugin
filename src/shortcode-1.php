@@ -61,12 +61,17 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
         $query_args['post_type'] = ODWPDP_CPT;
         $query_args['nopaging']  = ! $attrs['show_pagination'];
         $query_args['posts_per_page'] = $attrs['count'];
-        $query_args['orderby'] = ( $attrs['orderby'] == 'title' ) ? 'title' : 'meta_value';
         $query_args['order'] = $attrs['order'];
 
-        if ( $query_args['orderby'] == 'meta_value' ) {
-            $query_args['meta_key']  = $attrs['orderby'];
-            $query_args['meta_type'] = 'DATE';
+        if ( $attrs['orderby'] == 'title' ) {
+            $query_args['orderby'] = 'title';
+        }
+        else {
+            $query_args['meta_query'] = array();
+            $query_args['meta_query'][] = array(
+                'key' => 'odwpdp-metabox-1',
+                'type' => 'DATE'
+            );
         }
 
         $odwpdp_paged = (int) filter_input( INPUT_GET, 'odwpdp_paged', FILTER_VALIDATE_INT );
