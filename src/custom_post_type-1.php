@@ -195,13 +195,12 @@ endif;
 if ( ! function_exists( 'odwpdp_cpt_set_counter_meta' ) ) :
     /**
      * Add meta value with download counter to our custom post type.
-     * @global WP_Post $post
      * @param integer $post_id
+     * @param WP_Post $post
+     * @param boolean $update
      * @return integer
      */
-    function odwpdp_cpt_set_counter_meta( $post_id ) {
-        global $post;
-
+    function odwpdp_cpt_set_counter_meta( $post_id, $post, $update ) {
         if( ! current_user_can( 'edit_post', $post_id ) ) {
             return $post_id;
         }

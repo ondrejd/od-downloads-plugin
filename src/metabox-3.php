@@ -37,13 +37,12 @@ endif;
 if ( ! function_exists( 'odwpdp_save_metabox_3' ) ) :
     /**
      * Save metabox "Nahrat soubor".
-     * @global WP_Post $post
      * @param integer $post_id
+     * @param WP_Post $post
+     * @param boolean $update
      * @return integer
      */
-    function odwpdp_save_metabox_3( $post_id ) {
-        global $post;
-
+    function odwpdp_save_metabox_3( $post_id, $post, $update ) {
         $nonce = filter_input( INPUT_POST, 'odwpdp-metabox-3-nonce' );
         if ( ! wp_verify_nonce( $nonce, 'odwpdp-metabox3-nonce' ) ) {
             return $post_id;

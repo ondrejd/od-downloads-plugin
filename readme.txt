@@ -2,7 +2,7 @@
 Contributors: ondrejd
 Donate link: http://www.ondrejd.info/projects/wordpress-plugins/od-downloads-plugin/
 Tags: media,downloads
-Requires at least: 2.8
+Requires at least: 3.7
 Tested up to: 4.7.2
 Stable tag: 1.0.0
 

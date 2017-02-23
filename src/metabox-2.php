@@ -36,13 +36,12 @@ endif;
 if ( ! function_exists( 'odwpdp_save_metabox_2' ) ) :
     /**
      * Save metabox "Datum sejmuti".
-     * @global WP_Post $post
      * @param integer $post_id
+     * @param WP_Post $post
+     * @param boolean $update
      * @return integer
      */
-    function odwpdp_save_metabox_2( $post_id ) {
-        global $post;
-
+    function odwpdp_save_metabox_2( $post_id, $post, $update ) {
         $nonce = filter_input( INPUT_POST, 'odwpdp-metabox-2-nonce' );
         if ( ! wp_verify_nonce( $nonce, 'odwpdp-metabox2-nonce' ) ) {
             return $post_id;

@@ -37,13 +37,12 @@ endif;
 if ( ! function_exists( 'odwpdp_save_metabox_1' ) ) :
     /**
      * Save metabox "Datum vyveseni".
-     * @global WP_Post $post
      * @param integer $post_id
+     * @param WP_Post $post
+     * @param boolean $update
      * @return integer
      */
-    function odwpdp_save_metabox_1( $post_id ) {
-        global $post;
-
+    function odwpdp_save_metabox_1( $post_id, $post, $update ) {
         $nonce = filter_input( INPUT_POST, 'odwpdp-metabox-1-nonce' );
         if ( ! wp_verify_nonce( $nonce, 'odwpdp-metabox1-nonce' ) ) {
             return $post_id;
