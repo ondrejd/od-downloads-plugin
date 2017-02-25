@@ -5,7 +5,6 @@
  * @author  Ondřej Doněk, <ondrejd@gmail.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
  * @package odwp-downloads_plugin
- * 
  * @link https://www.gavick.com/blog/wordpress-tinymce-custom-buttons
  * @todo Labels in TinyMCE button should be localized properly!
  */
@@ -39,7 +38,6 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
             'orderby'         => 'title',
             'order'           => 'ASC',
             'enable_sort'     => 1,
-            'enable_ajax'     => 1,
         ), $atts );
 
         // Sanitize attributes
@@ -47,8 +45,7 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
         $attrs['show_title'] = (bool) $attrs['show_title'];
         $attrs['show_pagination'] = (bool) $attrs['show_pagination'];
         $attrs['enable_sort'] = (bool) $attrs['enable_sort'];
-        $attrs['enable_ajax'] = (bool) $attrs['enable_ajax'];
-        $attrs['enable_ajax'] = ( !$attrs['show_pagination'] && !$attrs['enable_sort'] ) ? false : $attrs['enable_ajax'];
+
         $orderby = filter_input( INPUT_GET, 'odwpdp_orderby' );
         $order = filter_input( INPUT_GET, 'odwpdp_order' );
         
@@ -156,6 +153,20 @@ endif;
 
 
 
+if ( ! function_exists( 'odwpdp_register_tinymce_plugin_locales_shortcode_1' ) ) :
+    /**
+     * @internal Load localization for our TinyMCE plugin.
+     * @param array $locales
+     * @return array
+     */
+    function odwpdp_register_tinymce_plugin_locales_shortcode_1( $locales ) {
+        $locales['odwpdp'] = ODWPDP_PATH . '/js/tinymce-plugins-locales.php';
+        return $locales;
+    }
+endif;
+
+
+
 if ( ! function_exists( 'odwpdp_add_shortcode_help_1' ) ) :
 /**
  * Adds the help tabs to the current page
@@ -192,5 +203,9 @@ function odwpdp_shortcode_help_1() {
 endif;
 
 // Register our new help tab
-add_action( 'load-post-new.php', 'odwpdp_add_shortcode_help_1' );
-add_action( 'load-post.php', 'odwpdp_add_shortcode_help_1' );
+if ( is_admin() ) {
+    add_filter( 'mce_external_languages', 'odwpdp_register_tinymce_plugin_locales_shortcode_1', 10, 1 );
+    add_action( 'load-post-new.php', 'odwpdp_add_shortcode_help_1' );
+    add_action( 'load-post.php', 'odwpdp_add_shortcode_help_1' );
+}
+

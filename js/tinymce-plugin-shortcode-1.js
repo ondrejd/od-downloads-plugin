@@ -9,60 +9,56 @@
 (function() {
     tinymce.PluginManager.add('odwpdp_shortcode_1', function( editor, url ) {
         editor.addButton( 'odwpdp_shortcode_1', {
-            tooltip: 'Soubory ke stažení',
+            tooltip: editor.getLang('odwpdp.btn_tooltip'),
             icon: 'icon odwpdp_shortcode_1-icon',
             onclick: function() {
                 editor.windowManager.open( {
-                    title: 'Vložte soubory ke stažení',
+                    title: editor.getLang('odwpdp.dlg_title'),
                     body: [{
                         type: 'textbox',
                         name: 'title',
-                        label: 'Název',
-                        value: 'Soubory ke stažení'
+                        label: editor.getLang('odwpdp.input1_lbl'),
+                        value: editor.getLang('odwpdp.input1_val')
                     }, {
                         type: 'textbox',
                         subtype: 'number',
                         name: 'count',
-                        label: 'Počet položek',
+                        label: editor.getLang('odwpdp.input2_lbl'),
                         value: 5
                     }, {
                         type: 'listbox',
                         name: 'orderby',
-                        label: 'Řadit dle',
+                        label: editor.getLang('odwpdp.input3_lbl'),
                         value: 'title',
                         values: [
-                            { text: 'Názvu', value: 'title' },
-                            { text: 'Data vyvěšení', value: 'puton_date' },
-                            { text: 'Data sejmutí', value: 'putoff_date' }
+                            { text: editor.getLang('odwpdp.input3_opt1'), value: 'title' },
+                            { text: editor.getLang('odwpdp.input3_opt2'), value: 'puton_date' },
+                            { text: editor.getLang('odwpdp.input3_opt3'), value: 'putoff_date' },
+                            { text: editor.getLang('odwpdp.input3_opt4'), value: 'count' }
                         ]
                     }, {
                         type: 'listbox',
                         name: 'order',
-                        label: 'Řadit',
+                        label: editor.getLang('odwpdp.input4_lbl'),
                         value: 'ASC',
                         values: [
-                            { text: 'Sestupně', value: 'DESC' },
-                            { text: 'Vzestupně', value: 'ASC' }
+                            { text: editor.getLang('odwpdp.input4_opt1'), value: 'DESC' },
+                            { text: editor.getLang('odwpdp.input4_opt2'), value: 'ASC' }
                         ]
                     }, {
                         type: 'checkbox',
                         name: 'show_title',
-                        label: 'Zobrazit název?',
+                        label: editor.getLang('odwpdp.input5_lbl'),
                         checked: true
                     }, {
                         type: 'checkbox',
                         name: 'enable_sort',
-                        label: 'Umožnit ruční řazení?',
+                        label: editor.getLang('odwpdp.input6_lbl'),
                         checked: true
                     }, {
                         type: 'checkbox',
                         name: 'show_pagination',
-                        label: 'Zobrazit stránkování?',
-                        checked: true
-                    }, {
-                        type: 'checkbox',
-                        name: 'enable_ajax',
-                        label: 'Povolit AJAX?',
+                        label: editor.getLang('odwpdp.input7_lbl'),
                         checked: true
                     }],
                     onsubmit: function( e ) {
@@ -77,7 +73,6 @@
                         ret += ' show_title="' + ( e.data.show_title === true ? '1' : '0' ) + '"';
                         ret += ' enable_sort="' + ( e.data.enable_sort === true ? '1' : '0' ) + '"';
                         ret += ' show_pagination="' + ( e.data.show_pagination === true ? '1' : '0' ) + '"';
-                        ret += ' enable_ajax="' + ( e.data.enable_ajax === true ? '1' : '0' ) + '"';
                         ret += ']';
 
                         editor.insertContent(ret);
