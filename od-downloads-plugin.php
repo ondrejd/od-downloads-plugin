@@ -313,3 +313,31 @@ if ( ! function_exists( 'odwpdp_get_avail_order_vals' ) ):
         );
     }
 endif;
+
+
+
+if ( ! function_exists( 'odwpdp_odwpdp_print_order_links_links' ) ) :
+    /**
+     * @internal Prints order arrows in files table head.
+     * @param string $url
+     * @param array  $atrs
+     * @param string $cur
+     * @return void
+     */
+    function odwpdp_print_order_links( $url, $atrs, $cur ) {
+?>
+<span class="order-icons">
+    <?php if ( $atrs['orderby'] == $cur && $atrs['order'] == 'ASC' ) : ?>
+    <span title="<?php _e( 'Seřazeno vzestupně', ODWPDP_SLUG ); ?>" class="arrow-up used-order"></span>
+    <?php  else : ?>
+    <a href="<?php echo $url . '&amp;odwpdp_orderby=' . $cur . '&amp;odwpdp_order=ASC'; ?>" title="<?php _e( 'Seřadit vzestupně', ODWPDP_SLUG ); ?>" class="arrow-up"></a>
+    <?php endif; ?>
+    <?php if ( $atrs['orderby'] == $cur && $atrs['order'] == 'DESC' ) : ?>
+    <span title="<?php _e( 'Seřazeno sestupně', ODWPDP_SLUG ); ?>" class="arrow-down used-order"></span>
+    <?php else : ?>
+    <a href="<?php echo $url . '&amp;odwpdp_orderby=' . $cur . '&amp;odwpdp_order=DESC'; ?>" title="<?php _e( 'Seřadit sestupně', ODWPDP_SLUG ); ?>" class="arrow-down"></a>
+    <?php endif; ?>
+</span>
+<?php
+    }
+endif;

@@ -83,12 +83,8 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
 
         // Render template
         ob_start( function() {} );
-        include_once( ODWPDP_PATH . '/templates/shortcode-1.phtml' );
-        $out = ob_get_flush();
-        $html = apply_filters( 'odwpdp-shortcode-1', $out );
-
-        // Reset WP query and post data
-        wp_reset_postdata();
+        include( ODWPDP_PATH . '/templates/shortcode-1.phtml' );
+        $html = ob_get_flush();
 
         return $html;
     }

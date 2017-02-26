@@ -22,30 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $self_url = $current_url . '?odwpdp_paged=' . $odwpdp_paged;
 
-/**
- * @internal Prints order arrows in files table head.
- * @param string $url
- * @param array  $atrs
- * @param string $cur
- * @return void
- */
-function print_order( $url, $atrs, $cur ) {
-?>
-<span class="order-icons">
-    <?php if ( $atrs['orderby'] == $cur && $atrs['order'] == 'ASC' ) : ?>
-    <span title="<?php _e( 'Seřazeno vzestupně', ODWPDP_SLUG ); ?>" class="arrow-up used-order"></span>
-    <?php  else : ?>
-    <a href="<?php echo $url . '&amp;odwpdp_orderby=' . $cur . '&amp;odwpdp_order=ASC'; ?>" title="<?php _e( 'Seřadit vzestupně', ODWPDP_SLUG ); ?>" class="arrow-up"></a>
-    <?php endif; ?>
-    <?php if ( $atrs['orderby'] == $cur && $atrs['order'] == 'DESC' ) : ?>
-    <span title="<?php _e( 'Seřazeno sestupně', ODWPDP_SLUG ); ?>" class="arrow-down used-order"></span>
-    <?php else : ?>
-    <a href="<?php echo $url . '&amp;odwpdp_orderby=' . $cur . '&amp;odwpdp_order=DESC'; ?>" title="<?php _e( 'Seřadit sestupně', ODWPDP_SLUG ); ?>" class="arrow-down"></a>
-    <?php endif; ?>
-</span>
-<?php
-}
-
 ?><div class="odwpdp-shortcode-1">
     <?php if ( (bool) $attrs['show_title'] === true && ! empty( $attrs['title'] ) ) : ?>
     <h2 class="odwpdp-shortcode-1-title"><?php echo esc_html( $attrs['title'] ); ?></h2>
@@ -56,30 +32,29 @@ function print_order( $url, $atrs, $cur ) {
                 <th scope="col">
                     <span class="col-title"><?php _e( 'Název a velikost souboru', ODWPDP_SLUG ); ?></span>
                     <?php if ( $attrs['enable_sort'] === true ) : ?>
-                        <?php print_order( $self_url, $attrs, 'title' ); ?>
+                        <?php odwpdp_print_order_links( $self_url, $attrs, 'title' ); ?>
                     <?php endif; ?>
                 </th>
                 <th scope="col">
                     <span class="col-title"><?php _e( 'Datum vyvěšení', ODWPDP_SLUG ); ?></span>
                     <?php if ( $attrs['enable_sort'] === true ) : ?>
-                        <?php print_order( $self_url, $attrs, 'puton_date' ); ?>
+                        <?php odwpdp_print_order_links( $self_url, $attrs, 'puton_date' ); ?>
                     <?php endif; ?>
                 </th>
                 <th scope="col">
                     <span class="col-title"><?php _e( 'Datum stažení', ODWPDP_SLUG ); ?></span>
                     <?php if ( $attrs['enable_sort'] === true ) : ?>
-                        <?php print_order( $self_url, $attrs, 'putoff_date' ); ?>
+                        <?php odwpdp_print_order_links( $self_url, $attrs, 'putoff_date' ); ?>
                     <?php endif; ?>
                 </th>
             </tr>
         </thead>
         <tbody>
-        <?php if ($query->have_posts()) : ?>
-            <?php while ($query->have_posts()) : 
-                $query->the_post();
-                $puton_date   = get_post_meta( get_the_ID(), 'odwpdp-metabox-1', true );
-                $putoff_date  = get_post_meta( get_the_ID(), 'odwpdp-metabox-2', true );
-                $file_info    = odwpdp_get_file_info( get_the_ID() ); ?>
+        <?php if( $query->post_count > 0 ) : $posts = $query->get_posts(); ?>
+            <?php foreach( $posts as $post ) : 
+                $puton_date   = get_post_meta( $post->ID, 'odwpdp-metabox-1', true );
+                $putoff_date  = get_post_meta( $post->ID, 'odwpdp-metabox-2', true );
+                $file_info    = odwpdp_get_file_info( $post->ID ); ?>
             <tr>
                 <th scope="row">
                     <div class="file-info-cont">
@@ -88,7 +63,7 @@ function print_order( $url, $atrs, $cur ) {
                             <?php printf(
                                 '<a href="%s" class="file-link">%s</a><br><span class="file-size">%s %s</span>',
                                 $file_info['url'],
-                                get_the_title(),
+                                $post->post_title,
                                 __( 'Velikost:', ODWPDP_SLUG ), $file_info['size']
                             ); ?>
                         </span>
@@ -105,9 +80,7 @@ function print_order( $url, $atrs, $cur ) {
                     <?php endif; ?>
                 </td>
             </tr>
-            <?php 
-            $query->reset_postdata();
-            endwhile; ?>
+            <?php endforeach; ?>
         <?php else: ?>
             <tr>
                 <td colspan="3" class="no_items-row">
