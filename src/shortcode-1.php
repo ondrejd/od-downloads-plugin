@@ -38,28 +38,31 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
             'orderby'         => 'title',
             'order'           => 'ASC',
             'enable_sort'     => 1,
+            'id_suffix'       => '',
         ), $atts );
 
         // Sanitize attributes
-        $attrs['count'] = (int) $attrs['count'] <= 0 ? -1 : (int) $attrs['count'];
-        $attrs['show_title'] = (bool) $attrs['show_title'];
+        $attrs['count']           = (int) $attrs['count'] <= 0 ? -1 : (int) $attrs['count'];
+        $attrs['show_title']      = (bool) $attrs['show_title'];
         $attrs['show_pagination'] = (bool) $attrs['show_pagination'];
-        $attrs['enable_sort'] = (bool) $attrs['enable_sort'];
+        $attrs['enable_sort']     = (bool) $attrs['enable_sort'];
+
+        $id_suffix = filter_input( INPUT_GET, 'id_suffix' );
+        $is_same   = ( $id_suffix == $attrs['id_suffix'] );
 
         $orderby = filter_input( INPUT_GET, 'odwpdp_orderby' );
-        $order = filter_input( INPUT_GET, 'odwpdp_order' );
-        
-        $attrs['orderby'] = isset( $_GET['odwpdp_orderby'] ) ? $_GET['odwpdp_orderby'] : $attrs['orderby'];
-        $attrs['order'] = isset( $_GET['odwpdp_order'] ) ? $_GET['odwpdp_order'] : $attrs['order'];
+        $order   = filter_input( INPUT_GET, 'odwpdp_order' );
+        $attrs['orderby'] = ( ! empty( $orderby ) && $is_same ) ? $orderby : $attrs['orderby'];
+        $attrs['order']   = ( ! empty( $order ) && $is_same ) ? $order : $attrs['order'];
         $attrs['orderby'] = ! in_array( $attrs['orderby'], array_keys( odwpdp_get_avail_orderby_vals() ) ) ? 'title' : $attrs['orderby'];
-        $attrs['order'] = ! in_array( $attrs['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ? 'DESC' : $attrs['order'];
+        $attrs['order']   = ! in_array( $attrs['order'], array_keys( odwpdp_get_avail_order_vals() ) ) ? 'DESC' : $attrs['order'];
 
         // Prepare query arguments
         $query_args = array();
-        $query_args['post_type'] = ODWPDP_CPT;
-        $query_args['nopaging']  = ! $attrs['show_pagination'];
+        $query_args['post_type']      = ODWPDP_CPT;
+        $query_args['nopaging']       = ! $attrs['show_pagination'];
         $query_args['posts_per_page'] = $attrs['count'];
-        $query_args['order'] = $attrs['order'];
+        $query_args['order']          = $attrs['order'];
 
         if ( $attrs['orderby'] == 'title' ) {
             $query_args['orderby'] = 'title';
@@ -67,19 +70,28 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
         else {
             $query_args['meta_query'] = array();
             $query_args['meta_query'][] = array(
-                'key' => 'odwpdp-metabox-1',
+                'key'  => 'odwpdp-metabox-1',
                 'type' => 'DATE'
             );
         }
 
         $odwpdp_paged = (int) filter_input( INPUT_GET, 'odwpdp_paged', FILTER_VALIDATE_INT );
-        $query_args['paged'] = max( 1, $odwpdp_paged );
+        $query_args['paged'] = $is_same ? max( 1, $odwpdp_paged ) : 1;
 
         // Create query
         $query = new WP_Query( $query_args );
 
         // Current URL
-        $current_url = home_url( add_query_arg( array(), $wp->request ) );
+        $url_params  = array();
+
+        if ( ! empty( $attrs['id_suffix'] ) ) {
+            $url_params['id_suffix'] = $attrs['id_suffix'];
+        }
+
+        $current_url = home_url( add_query_arg( $url_params, $wp->request ) );
+        if ( strpos( $current_url, '?' ) === false ) {
+            $current_url .= '?1';
+        }
 
         // Render template
         ob_start( function() {} );

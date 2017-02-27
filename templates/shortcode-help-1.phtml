@@ -27,9 +27,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     <p><?php _e( '<b>Zobrazit název?</b> — pokud je zaškrtnuto zobrazí se nad tabulkou se soubory ke stažení nadpis.', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<b>Povolit ruční řazení?</b> — povolit ruční řazení řádků v tabulce se soubory.', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<b>Zobrazit stránkování?</b> — zobrazí stránkování na spodku tabulky (pracuje spolus nastavením <em>Počet položek</em>.', ODWPDP_SLUG ); ?></p>
-    <p><?php _e( '<b>Povolit AJAX?</b> — zapne podporu pro stránkování a řazení jen pomocí JavaScriptu (bez pevných odkazů vedoucích k obnovení stránky). Pokud je toto pole zaškrtnuto aplikuje se pouze pokud je alespoň jedno pole z <em>Zobrazit stránkování?</em> a <em>Umožnit ruční řazení?</em> zaškrtnuto.', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<b>Identifikátor</b> — identifikátor, použijte v případě, že na jedné stránce (příspěvku) je více tabulek se soubory ke stažení.', ODWPDP_SLUG ); ?></p>
     <h3><?php _e( 'Ruční vkládání', ODWPDP_SLUG ); ?></h3>
-    <pre><?php _e( "[soubory_ke_stazeni title=\"...\"\n                    show_title=\"1\"\n                    show_pagination=\"1\"\n                    count=\"5\"\n                    orderby=\"title\"\n                    enable_ajax=\"1\"\n                    enable_sort=\"1\"]", ODWPDP_SLUG ); ?></pre>
+    <pre><?php _e( "[soubory_ke_stazeni title=\"...\"\n                    show_title=\"1\"\n                    show_pagination=\"1\"\n                    count=\"5\"\n                    orderby=\"title\"\n                    enable_sort=\"1\"\n                    id_suffix=\"1\"]", ODWPDP_SLUG ); ?></pre>
     <p><?php _e( 'kde:', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<code>title</code> — <em>string</em>, název</p>', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<code>count</code> — <em>integer</em>, počet položek</p>', ODWPDP_SLUG ); ?></p>
@@ -37,5 +37,5 @@ if ( ! defined( 'ABSPATH' ) ) {
     <p><?php _e( '<code>show_title</code> — <em>boolean</em>, zobrazit název?</p>', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<code>enable_sort</code> — <em>boolean</em>, povolit ruční řazení?</p>', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<code>show_pagination</code> — <em>boolean</em>, zobrazit stránkování?</p>', ODWPDP_SLUG ); ?></p>
-    <p><?php _e( '<code>enable_ajax</code> — <em>boolean</em>, povolit AJAX?</p>', ODWPDP_SLUG ); ?></p>
+    <p><?php _e( '<code>id_suffix</code> — <em>string</em>, identifikátor.</p>', ODWPDP_SLUG ); ?></p>
 </div>

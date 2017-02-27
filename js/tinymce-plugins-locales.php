@@ -31,9 +31,10 @@ function odwpdp_tinymce_plugins_locales() {
         'input4_lbl'  => __( 'Řadit', ODWPDP_SLUG ),
         'input4_opt1' => __( 'Sestupně', ODWPDP_SLUG ),
         'input4_opt2' => __( 'Vzestupně', ODWPDP_SLUG ),
-        'input5_lbl' => __( 'Zobrazit název?', ODWPDP_SLUG ),
-        'input6_lbl' => __( 'Umožnit ruční řazení?', ODWPDP_SLUG ),
-        'input7_lbl' => __( 'Zobrazit stránkování?', ODWPDP_SLUG )
+        'input5_lbl'  => __( 'Zobrazit název?', ODWPDP_SLUG ),
+        'input6_lbl'  => __( 'Umožnit ruční řazení?', ODWPDP_SLUG ),
+        'input7_lbl'  => __( 'Zobrazit stránkování?', ODWPDP_SLUG ),
+        'input8_lbl'  => __( 'Identifikátor', ODWPDP_SLUG ),
     );
 
     $locale = _WP_Editors::$mce_locale;

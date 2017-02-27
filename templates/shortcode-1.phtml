@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit();
 }
 
-$self_url = $current_url . '?odwpdp_paged=' . $odwpdp_paged;
+$self_url = $current_url . '&odwpdp_paged=' . $odwpdp_paged;
 
 ?><div class="odwpdp-shortcode-1">
     <?php if ( (bool) $attrs['show_title'] === true && ! empty( $attrs['title'] ) ) : ?>
@@ -101,22 +101,22 @@ $self_url = $current_url . '?odwpdp_paged=' . $odwpdp_paged;
                         <span title="<?php _e( 'První stránka', ODWPDP_SLUG ); ?>"><span>&laquo;</span></span>
                         <span title="<?php _e( 'Předchozí stránka', ODWPDP_SLUG ); ?>"><span>&lsaquo;</span></span>
                         <?php else : ?>
-                        <a href="<?php echo $current_url . '?odwpdp_paged=1'; ?>" title="<?php _e( 'První stránka', ODWPDP_SLUG ); ?>"><span>&laquo;</span></a>
-                        <a href="<?php echo $current_url . '?odwpdp_paged=' . ( $odwpdp_paged - 1 ); ?>" title="<?php _e( 'Předchozí stránka', ODWPDP_SLUG ); ?>"><span>&lsaquo;</span></a>
+                        <a href="<?php echo $current_url . '&odwpdp_paged=1'; ?>" title="<?php _e( 'První stránka', ODWPDP_SLUG ); ?>"><span>&laquo;</span></a>
+                        <a href="<?php echo $current_url . '&odwpdp_paged=' . ( $odwpdp_paged - 1 ); ?>" title="<?php _e( 'Předchozí stránka', ODWPDP_SLUG ); ?>"><span>&lsaquo;</span></a>
                         <?php endif; ?>
                         <?php for ( $i = 1; $i <= $query->max_num_pages; $i++ ) : ?>
                         <?php if ( $odwpdp_paged == $i ) : ?>
                         <span title="<?php _e( 'Aktuální stránka', ODWPDP_SLUG ); ?>"><span><?php echo $i; ?></span></span>
                         <?php else : ?>
-                        <a href="<?php echo $current_url . '?odwpdp_paged=' . $i; ?>" title="<?php printf( __( 'Stránka číslo %d', ODWPDP_SLUG ), $i ); ?>"><span><?php echo $i; ?></span></a>
+                        <a href="<?php echo $current_url . '&odwpdp_paged=' . $i; ?>" title="<?php printf( __( 'Stránka číslo %d', ODWPDP_SLUG ), $i ); ?>"><span><?php echo $i; ?></span></a>
                         <?php endif; ?>
                         <?php endfor; ?>
                         <?php if ( $odwpdp_paged >= $query->max_num_pages ) : ?>
                         <span title="<?php _e( 'Následující stránka', ODWPDP_SLUG ); ?>"><span>&rsaquo;</span></span>
                         <span title="<?php _e( 'Poslední stránka', ODWPDP_SLUG ); ?>"><span>&raquo;</span></span>
                         <?php else : ?>
-                        <a href="<?php echo $current_url . '?odwpdp_paged=' . ( $odwpdp_paged + 1 ); ?>" title="<?php _e( 'Následující stránka', ODWPDP_SLUG ); ?>"><span>&rsaquo;</span></a>
-                        <a href="<?php echo $current_url . '?odwpdp_paged=' . $query->max_num_pages; ?>" title="<?php _e( 'Poslední stránka', ODWPDP_SLUG ); ?>"><span>&raquo;</span></a>
+                        <a href="<?php echo $current_url . '&odwpdp_paged=' . ( $odwpdp_paged + 1 ); ?>" title="<?php _e( 'Následující stránka', ODWPDP_SLUG ); ?>"><span>&rsaquo;</span></a>
+                        <a href="<?php echo $current_url . '&odwpdp_paged=' . $query->max_num_pages; ?>" title="<?php _e( 'Poslední stránka', ODWPDP_SLUG ); ?>"><span>&raquo;</span></a>
                         <?php endif; ?>
                     </div>
                 </td>
