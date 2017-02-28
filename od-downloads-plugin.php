@@ -1,12 +1,14 @@
 <?php
 /**
- * Plugin Name: odwp-downloads_plugin
- * Plugin URI: https://bitbucket.org/ondrejd/odwp-downloads_plugin
- * Description: 
+ * Plugin Name: Simple Downloads Plugin
+ * Plugin URI: https://github.com/ondrejd/od-downloads-plugin
+ * Description: Plugin that allows to manage files that you want to offer to your users for download. Allows to use either sidebar widget, shortcode with responsive table or using regular theme (downloads are <em>custom post types</em> so you can make templates for them).<br>Visit my homepage to see my other WordPress plugins or use <a href="https://www.paypal.me/ondrejd">this link</a> to make a donation if you are satisfied with this plugin.
  * Version: 1.0.0
- * Author: Ondřej Doněk
- * Author URI: 
+ * Author: ondrejd
+ * Author URI: http://ondrejd.com/
  * License: GPLv3
+ * Text Domain: odwp-downloads_plugin
+ * Domain Path: /languages
  *
  * @author  Ondřej Doněk, <ondrejd@gmail.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
@@ -34,6 +36,18 @@ include_once( ODWPDP_PATH . '/src/custom_post_type-1.php' );
 
 
 
+if ( !function_exists( 'odwpdp_load_textdomain' ) ) :
+    /**
+     * Load plugin textdomain.
+     */
+    function odwpdp_load_textdomain() {
+        load_plugin_textdomain( ODWPDP_SLUG, false, 'od-downloads-plugin/languages' );
+    }
+endif;
+add_action( 'init', 'odwpdp_load_textdomain' );
+
+
+
 /**
  * @var array $odwpdp_metaboxes
  */
@@ -45,7 +59,7 @@ $odwpdp_metaboxes = array(
 
 
 
-if ( !function_exists( 'odwpdp_metaboxes' ) ) :
+if ( ! function_exists( 'odwpdp_metaboxes' ) ) :
     /**
      * Meta boxes for our `odwpdp_cpt` custom post type.
      * @global array $odwpdp_metaboxes
@@ -68,7 +82,7 @@ endif;
 
 
 
-if ( !function_exists( 'odwpdp_add_metaboxes' ) ) :
+if ( ! function_exists( 'odwpdp_add_metaboxes' ) ) :
     /**
      * Add our meta boxes.
      * @global array $odwpdp_metaboxes
@@ -100,7 +114,7 @@ if ( is_admin() === true ) {
 
 
 
-if ( !function_exists( 'odwpdp_admin_scripts' ) ) :
+if ( ! function_exists( 'odwpdp_admin_scripts' ) ) :
     /**
      * Append our CSS styles and Javascripts for the WP admin.
      */
@@ -128,7 +142,7 @@ add_action( 'admin_enqueue_scripts', 'odwpdp_admin_scripts' );
 
 
 
-if ( !function_exists( 'odwpdp_public_scripts' ) ) :
+if ( ! function_exists( 'odwpdp_public_scripts' ) ) :
     /**
      * Append our CSS styles and JavaScripts for the front-end.
      */

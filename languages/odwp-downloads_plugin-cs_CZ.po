@@ -1,0 +1,526 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: od-downloads-plugin\n"
+"POT-Creation-Date: 2017-02-28 12:17+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Ondřej Doněk <ondrejd@gmail.com>\n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: download-file.php:18
+msgid "Musíte specifikovat soubor ke stažení!"
+msgstr ""
+
+#: download-file.php:32
+msgid "Omlouváme se, ale soubor ke stažení nebyl nalezen!"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:21 js/tinymce-plugins-locales.php:24
+#: src/shortcode-1.php:35 src/shortcode-1.php:190 src/widget-1.php:26
+msgid "Soubory ke stažení"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:22
+msgid "Vložte soubory ke stažení"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:23
+msgid "Název"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:25
+msgid "Počet položek"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:26
+msgid "Řadit dle"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:27 od-downloads-plugin.php:309
+msgid "Názvu"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:28 od-downloads-plugin.php:310
+msgid "Data vyvěšení"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:29 od-downloads-plugin.php:311
+msgid "Data sejmutí"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:30
+msgid "Počtu stažení"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:31
+msgid "Řadit"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:32 od-downloads-plugin.php:325
+msgid "Sestupně"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:33 od-downloads-plugin.php:326
+msgid "Vzestupně"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:34
+msgid "Zobrazit název?"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:35
+msgid "Umožnit ruční řazení?"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:36
+msgid "Zobrazit stránkování?"
+msgstr ""
+
+#: js/tinymce-plugins-locales.php:37
+msgid "Identifikátor"
+msgstr ""
+
+#: od-downloads-plugin.php:55 src/custom_post_type-1.php:83
+#: templates/shortcode-1.phtml:39
+msgid "Datum vyvěšení"
+msgstr ""
+
+#: od-downloads-plugin.php:56 src/custom_post_type-1.php:84
+msgid "Datum sejmutí"
+msgstr ""
+
+#: od-downloads-plugin.php:57
+msgid "Nahrát soubor"
+msgstr ""
+
+#: od-downloads-plugin.php:345
+msgid "Seřazeno vzestupně"
+msgstr ""
+
+#: od-downloads-plugin.php:347
+msgid "Seřadit vzestupně"
+msgstr ""
+
+#: od-downloads-plugin.php:350
+msgid "Seřazeno sestupně"
+msgstr ""
+
+#: od-downloads-plugin.php:352
+msgid "Seřadit sestupně"
+msgstr ""
+
+#: src/custom_post_type-1.php:24
+msgid "Soubory"
+msgstr ""
+
+#: src/custom_post_type-1.php:25
+msgid "Vytvořit soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:26
+msgid "Archív souborů ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:27
+msgid "Atributy souboru ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:28
+msgid "Všechny soubory"
+msgstr ""
+
+#: src/custom_post_type-1.php:29
+msgid "Přidej nový soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:30
+msgid "Přidej nový"
+msgstr ""
+
+#: src/custom_post_type-1.php:31
+msgid "Nový soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:32
+msgid "Uprav soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:33
+msgid "Aktualizuj soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:34
+msgid "Zobraz soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:35
+msgid "Zobraz soubory ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:36
+msgid "Ikona souboru"
+msgstr ""
+
+#: src/custom_post_type-1.php:37
+msgid "Nastavit ikonu souboru ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:38
+msgid "Odebrat ikonu"
+msgstr ""
+
+#: src/custom_post_type-1.php:39
+msgid "Použij jako ikonu souboru"
+msgstr ""
+
+#: src/custom_post_type-1.php:42
+msgid "Soubor ke stažení"
+msgstr ""
+
+#: src/custom_post_type-1.php:43
+msgid "Soubory, které chcete poskytnout uživatelům ke stažení."
+msgstr ""
+
+#: src/custom_post_type-1.php:82
+msgid "Soubor"
+msgstr ""
+
+#: src/custom_post_type-1.php:85
+msgid "Počet stažení"
+msgstr ""
+
+#: src/shortcode-1.php:195
+msgid "Nápověda na wiki projektu"
+msgstr ""
+
+#: src/widget-1.php:24
+msgid "Widget se soubory ke stažení"
+msgstr ""
+
+#: templates/metabox-1.phtml:17
+msgid "Zadejte datum vyvěšení:"
+msgstr ""
+
+#: templates/metabox-1.phtml:19 templates/metabox-2.phtml:19
+msgid "Zadejte datum:"
+msgstr ""
+
+#: templates/metabox-1.phtml:21 templates/metabox-2.phtml:21
+msgid "Den"
+msgstr ""
+
+#: templates/metabox-1.phtml:25 templates/metabox-2.phtml:25
+msgid "Měsíc"
+msgstr ""
+
+#: templates/metabox-1.phtml:27 templates/metabox-2.phtml:27
+msgid "Leden"
+msgstr ""
+
+#: templates/metabox-1.phtml:27 templates/metabox-2.phtml:27
+msgid "01 - Leden"
+msgstr ""
+
+#: templates/metabox-1.phtml:28 templates/metabox-2.phtml:28
+msgid "Únor"
+msgstr ""
+
+#: templates/metabox-1.phtml:28 templates/metabox-2.phtml:28
+msgid "02 - Únor"
+msgstr ""
+
+#: templates/metabox-1.phtml:29 templates/metabox-2.phtml:29
+msgid "Březen"
+msgstr ""
+
+#: templates/metabox-1.phtml:29 templates/metabox-2.phtml:29
+msgid "03 - Březen"
+msgstr ""
+
+#: templates/metabox-1.phtml:30 templates/metabox-2.phtml:30
+msgid "Duben"
+msgstr ""
+
+#: templates/metabox-1.phtml:30 templates/metabox-2.phtml:30
+msgid "04 - Duben"
+msgstr ""
+
+#: templates/metabox-1.phtml:31 templates/metabox-2.phtml:31
+msgid "Květen"
+msgstr ""
+
+#: templates/metabox-1.phtml:31 templates/metabox-2.phtml:31
+msgid "05 - Květen"
+msgstr ""
+
+#: templates/metabox-1.phtml:32 templates/metabox-2.phtml:32
+msgid "Červen"
+msgstr ""
+
+#: templates/metabox-1.phtml:32 templates/metabox-2.phtml:32
+msgid "06 - Červen"
+msgstr ""
+
+#: templates/metabox-1.phtml:33 templates/metabox-2.phtml:33
+msgid "Červenec"
+msgstr ""
+
+#: templates/metabox-1.phtml:33 templates/metabox-2.phtml:33
+msgid "07 - Červenec"
+msgstr ""
+
+#: templates/metabox-1.phtml:34 templates/metabox-2.phtml:34
+msgid "Srpen"
+msgstr ""
+
+#: templates/metabox-1.phtml:34 templates/metabox-2.phtml:34
+msgid "08 - Srpen"
+msgstr ""
+
+#: templates/metabox-1.phtml:35 templates/metabox-2.phtml:35
+msgid "Září"
+msgstr ""
+
+#: templates/metabox-1.phtml:35 templates/metabox-2.phtml:35
+msgid "09 - Září "
+msgstr ""
+
+#: templates/metabox-1.phtml:36 templates/metabox-2.phtml:36
+msgid "Říjen"
+msgstr ""
+
+#: templates/metabox-1.phtml:36 templates/metabox-2.phtml:36
+msgid "10 - Říjen"
+msgstr ""
+
+#: templates/metabox-1.phtml:37 templates/metabox-2.phtml:37
+msgid "Listopad"
+msgstr ""
+
+#: templates/metabox-1.phtml:37 templates/metabox-2.phtml:37
+msgid "11 - Listopad"
+msgstr ""
+
+#: templates/metabox-1.phtml:38 templates/metabox-2.phtml:38
+msgid "Prosinec"
+msgstr ""
+
+#: templates/metabox-1.phtml:38 templates/metabox-2.phtml:38
+msgid "12 - Prosinec"
+msgstr ""
+
+#: templates/metabox-1.phtml:42 templates/metabox-2.phtml:42
+msgid "Rok"
+msgstr ""
+
+#: templates/metabox-2.phtml:17 templates/metabox-3.phtml:33
+msgid "Zadejte datum sejmutí:"
+msgstr ""
+
+#: templates/metabox-3.phtml:25
+msgid "Připojený soubor chybí nebo je smazán"
+msgstr ""
+
+#: templates/metabox-3.phtml:39 templates/metabox-3.phtml:131
+msgid "Smazat soubor"
+msgstr ""
+
+#: templates/metabox-3.phtml:41
+msgid "Zatím nebyl nahrán žádný soubor."
+msgstr ""
+
+#: templates/metabox-3.phtml:51
+msgid "Přesuňte soubor sem"
+msgstr ""
+
+#: templates/metabox-3.phtml:55
+#, php-format
+msgid "Maximální velikost: %d MB"
+msgstr ""
+
+#: templates/metabox-3.phtml:72
+msgid "Podporované typy souborů"
+msgstr ""
+
+#: templates/shortcode-1.phtml:33
+msgid "Název a velikost souboru"
+msgstr ""
+
+#: templates/shortcode-1.phtml:45
+msgid "Datum stažení"
+msgstr ""
+
+#: templates/shortcode-1.phtml:67
+msgid "Velikost:"
+msgstr ""
+
+#: templates/shortcode-1.phtml:87
+msgid "Nebyly nalezeny žádné soubory ke stažení."
+msgstr ""
+
+#: templates/shortcode-1.phtml:96
+#, php-format
+msgid "Celkem zobrazeno %d z %d položek."
+msgstr ""
+
+#: templates/shortcode-1.phtml:101 templates/shortcode-1.phtml:104
+msgid "První stránka"
+msgstr ""
+
+#: templates/shortcode-1.phtml:102 templates/shortcode-1.phtml:105
+msgid "Předchozí stránka"
+msgstr ""
+
+#: templates/shortcode-1.phtml:109
+msgid "Aktuální stránka"
+msgstr ""
+
+#: templates/shortcode-1.phtml:111
+#, php-format
+msgid "Stránka číslo %d"
+msgstr ""
+
+#: templates/shortcode-1.phtml:115 templates/shortcode-1.phtml:118
+msgid "Následující stránka"
+msgstr ""
+
+#: templates/shortcode-1.phtml:116 templates/shortcode-1.phtml:119
+msgid "Poslední stránka"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:17
+#, php-format
+msgid ""
+"Pokud chcete vložit tabulku se soubory ke stažení do stránky či příspěvku "
+"použijte tlačítko %s (<b>Soubory ke stažení</b>) nebo vložte kód přímo - v "
+"nejjednodušší variantě jen <code>[soubory_ke_stazeni]</code>."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:20 templates/shortcode-help-1.phtml:22
+msgid "Dialog pro vložení kódu"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:21
+msgid ""
+"Pomocí výše zmíněného tlačítka vyvoláte dialog pro nastavení vloženého kódu "
+"s tabulkou:"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:23
+msgid "Všechny položky v dialogu jsou volitelné, níže je jejich popis:"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:24
+msgid ""
+"<b>Název</b> — nadpis, který uvodí tabulku se soubory ke stažení. Pokud "
+"název není uveden, ale políčko <em>Zobrazit název?</em> je zaškrtnuto, "
+"zobrazí se defaultně nadpis <em>Soubory ke stažení</em>."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:25
+msgid ""
+"<b>Počet položek</b> — určuje, kolik souboru ke stažení se má zobrazit (s "
+"ohledem na řazení). Pokud je nastaveno na <code>0</code>, jsou zobrazeny "
+"všechny definované soubory (takže stránkování není zobrazeno ani pokud je "
+"<em>Zobrazit stránkování?</em> zaškrtnuto)."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:26
+msgid ""
+"<b>Řadit dle</b> — určuje dle čeho se mají soubory při zobrazení seřadit."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:27
+msgid ""
+"<b>Zobrazit název?</b> — pokud je zaškrtnuto zobrazí se nad tabulkou se "
+"soubory ke stažení nadpis."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:28
+msgid ""
+"<b>Povolit ruční řazení?</b> — povolit ruční řazení řádků v tabulce se "
+"soubory."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:29
+msgid ""
+"<b>Zobrazit stránkování?</b> — zobrazí stránkování na spodku tabulky "
+"(pracuje spolu s nastavením <em>Počet položek</em>)."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:30
+msgid ""
+"<b>Identifikátor</b> — identifikátor, použijte v případě, že na jedné "
+"stránce (příspěvku) je více tabulek se soubory ke stažení."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:31
+msgid "Ruční vkládání"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:32
+msgid ""
+"[soubory_ke_stazeni title=\"...\"\n"
+"                    show_title=\"1\"\n"
+"                    show_pagination=\"1\"\n"
+"                    count=\"5\"\n"
+"                    orderby=\"title\"\n"
+"                    enable_sort=\"1\"\n"
+"                    id_suffix=\"1\"]"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:33
+msgid "kde:"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:34
+msgid "<code>title</code> — <em>string</em>, název"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:35
+msgid "<code>count</code> — <em>integer</em>, počet položek"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:36
+msgid ""
+"<code>orderby</code> — <em>string</em>, možné hodnoty: <code>title</code>, "
+"<code>puton_date</code>, <code>putoff_date</code>."
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:37
+msgid "<code>show_title</code> — <em>boolean</em>, zobrazit název?"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:38
+msgid "<code>enable_sort</code> — <em>boolean</em>, povolit ruční řazení?"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:39
+msgid "<code>show_pagination</code> — <em>boolean</em>, zobrazit stránkování?"
+msgstr ""
+
+#: templates/shortcode-help-1.phtml:40
+msgid "<code>id_suffix</code> — <em>string</em>, identifikátor."
+msgstr ""
+
+#: templates/widget-1.phtml:50
+msgid "Datum vyvěšení/sejmutí"
+msgstr ""
+
+#~ msgid "Downloads"
+#~ msgstr "Ke stažení"
+
+#~ msgid "Downloads%s%s"
+#~ msgstr "Ke stažení%s%s"
+
+#~ msgid "Settings"
+#~ msgstr "Nastavení"

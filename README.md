@@ -1,18 +1,17 @@
 # Downloads Plugin
 
-[WordPress](https://wordpress.org/) plug-in that allow to manage files that you want to offer to visitors of your pages for download. Allow to use either sidebar widget, shortcode with responsive table or using regular [WordPress](https://wordpress.org/) theme (downloads are _custom post types_ so you can make templates for them).
+[WordPress](https://wordpress.org/) plugin that allows to manage files that you want to offer to your users for download. Allows to use either sidebar widget, shortcode with responsive table or using regular [WordPress](https://wordpress.org/) theme (downloads are _custom post types_ so you can make templates for them).
 
 ## Description
 
 Main features:
 
 - adds new [custom post type](https://codex.wordpress.org/Post_Types#Custom_Post_Types) that represents single item to download
-- contains [shortcode](https://codex.wordpress.org/Shortcode_API) that renders responsive table with items to download
+- contains [shortcode](https://codex.wordpress.org/Shortcode_API) that renders responsive table with ordering and pagination
 - contains [widget](https://codex.wordpress.org/Widgets_API) that prints list of items to download
 - file types are specified by correct icon
 - enables downloads restricted just for registered users
 - offers simple download statistics
-- enable tracking using [Google Analytics](https://www.google.com/analytics/)
 - available with English and Czech locales
 - tested on the latest [WordPress](https://wordpress.org/) versions (currently __4.7.2__)
 
