@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: od-downloads-plugin\n"
-"POT-Creation-Date: 2017-02-28 12:17+0100\n"
+"POT-Creation-Date: 2017-02-28 17:13+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Ondřej Doněk <ondrejd@gmail.com>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-KeywordsList: _e;__;_x;esc_attr_e\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -25,7 +25,8 @@ msgid "Omlouváme se, ale soubor ke stažení nebyl nalezen!"
 msgstr ""
 
 #: js/tinymce-plugins-locales.php:21 js/tinymce-plugins-locales.php:24
-#: src/shortcode-1.php:35 src/shortcode-1.php:190 src/widget-1.php:26
+#: src/custom_post_type-1.php:22 src/shortcode-1.php:35
+#: src/shortcode-1.php:190 src/widget-1.php:26
 msgid "Soubory ke stažení"
 msgstr ""
 
@@ -118,6 +119,10 @@ msgstr ""
 msgid "Seřadit sestupně"
 msgstr ""
 
+#: src/custom_post_type-1.php:23 src/custom_post_type-1.php:42
+msgid "Soubor ke stažení"
+msgstr ""
+
 #: src/custom_post_type-1.php:24
 msgid "Soubory"
 msgstr ""
@@ -182,10 +187,6 @@ msgstr ""
 msgid "Použij jako ikonu souboru"
 msgstr ""
 
-#: src/custom_post_type-1.php:42
-msgid "Soubor ke stažení"
-msgstr ""
-
 #: src/custom_post_type-1.php:43
 msgid "Soubory, které chcete poskytnout uživatelům ke stažení."
 msgstr ""
@@ -204,6 +205,22 @@ msgstr ""
 
 #: src/widget-1.php:24
 msgid "Widget se soubory ke stažení"
+msgstr ""
+
+#: src/widget-1.php:103
+msgid "Název:"
+msgstr ""
+
+#: src/widget-1.php:107
+msgid "Počet položek:"
+msgstr ""
+
+#: src/widget-1.php:111
+msgid "Řadit dle:"
+msgstr ""
+
+#: src/widget-1.php:119
+msgid "Řadit:"
 msgstr ""
 
 #: templates/metabox-1.phtml:17
@@ -342,6 +359,10 @@ msgstr ""
 msgid "Přesuňte soubor sem"
 msgstr ""
 
+#: templates/metabox-3.phtml:54
+msgid "Vyberte soubor"
+msgstr ""
+
 #: templates/metabox-3.phtml:55
 #, php-format
 msgid "Maximální velikost: %d MB"
@@ -465,17 +486,6 @@ msgstr ""
 
 #: templates/shortcode-help-1.phtml:31
 msgid "Ruční vkládání"
-msgstr ""
-
-#: templates/shortcode-help-1.phtml:32
-msgid ""
-"[soubory_ke_stazeni title=\"...\"\n"
-"                    show_title=\"1\"\n"
-"                    show_pagination=\"1\"\n"
-"                    count=\"5\"\n"
-"                    orderby=\"title\"\n"
-"                    enable_sort=\"1\"\n"
-"                    id_suffix=\"1\"]"
 msgstr ""
 
 #: templates/shortcode-help-1.phtml:33

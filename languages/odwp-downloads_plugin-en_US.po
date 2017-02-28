@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: od-downloads-plugin\n"
-"POT-Creation-Date: 2017-02-28 12:17+0100\n"
+"POT-Creation-Date: 2017-02-28 18:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Ondřej Doněk <ondrejd@gmail.com>\n"
@@ -12,10 +12,9 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-KeywordsList: _e;__;esc_attr_e;_x\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: ./vendor\n"
 
 #: download-file.php:18
 msgid "Musíte specifikovat soubor ke stažení!"
@@ -26,7 +25,8 @@ msgid "Omlouváme se, ale soubor ke stažení nebyl nalezen!"
 msgstr "Sorry but file for download was not found!"
 
 #: js/tinymce-plugins-locales.php:21 js/tinymce-plugins-locales.php:24
-#: src/shortcode-1.php:35 src/shortcode-1.php:190 src/widget-1.php:26
+#: src/custom_post_type-1.php:22 src/shortcode-1.php:35
+#: src/shortcode-1.php:190 src/widget-1.php:26
 msgid "Soubory ke stažení"
 msgstr "Files for download"
 
@@ -119,6 +119,10 @@ msgstr "In descending  order"
 msgid "Seřadit sestupně"
 msgstr "Order descending"
 
+#: src/custom_post_type-1.php:23 src/custom_post_type-1.php:42
+msgid "Soubor ke stažení"
+msgstr "File for download"
+
 #: src/custom_post_type-1.php:24
 msgid "Soubory"
 msgstr "Files"
@@ -183,10 +187,6 @@ msgstr "Remove icon"
 msgid "Použij jako ikonu souboru"
 msgstr "Use as file icon"
 
-#: src/custom_post_type-1.php:42
-msgid "Soubor ke stažení"
-msgstr "File for download"
-
 #: src/custom_post_type-1.php:43
 msgid "Soubory, které chcete poskytnout uživatelům ke stažení."
 msgstr "Files you want to offer for download to your users."
@@ -206,6 +206,22 @@ msgstr "Help on project's wiki"
 #: src/widget-1.php:24
 msgid "Widget se soubory ke stažení"
 msgstr "Widget with files for download"
+
+#: src/widget-1.php:103
+msgid "Název:"
+msgstr "Title:"
+
+#: src/widget-1.php:107
+msgid "Počet položek:"
+msgstr "Count of items:"
+
+#: src/widget-1.php:111
+msgid "Řadit dle:"
+msgstr "Order by:"
+
+#: src/widget-1.php:119
+msgid "Řadit:"
+msgstr "Order:"
 
 #: templates/metabox-1.phtml:17
 msgid "Zadejte datum vyvěšení:"
@@ -342,6 +358,10 @@ msgstr "No file was uploaded yet."
 #: templates/metabox-3.phtml:51
 msgid "Přesuňte soubor sem"
 msgstr "Move file here"
+
+#: templates/metabox-3.phtml:54
+msgid "Vyberte soubor"
+msgstr "Choose file"
 
 #: templates/metabox-3.phtml:55
 #, php-format
@@ -485,17 +505,6 @@ msgstr ""
 #: templates/shortcode-help-1.phtml:31
 msgid "Ruční vkládání"
 msgstr "Inserting by hand"
-
-#: templates/shortcode-help-1.phtml:32
-msgid ""
-"[soubory_ke_stazeni title=\"...\"\n"
-"                    show_title=\"1\"\n"
-"                    show_pagination=\"1\"\n"
-"                    count=\"5\"\n"
-"                    orderby=\"title\"\n"
-"                    enable_sort=\"1\"\n"
-"                    id_suffix=\"1\"]"
-msgstr ""
 
 #: templates/shortcode-help-1.phtml:33
 msgid "kde:"

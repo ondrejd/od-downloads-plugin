@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <p><?php _e( '<b>Zobrazit stránkování?</b> — zobrazí stránkování na spodku tabulky (pracuje spolu s nastavením <em>Počet položek</em>).', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<b>Identifikátor</b> — identifikátor, použijte v případě, že na jedné stránce (příspěvku) je více tabulek se soubory ke stažení.', ODWPDP_SLUG ); ?></p>
     <h3><?php _e( 'Ruční vkládání', ODWPDP_SLUG ); ?></h3>
-    <pre><?php _e( "[soubory_ke_stazeni title=\"...\"\n                    show_title=\"1\"\n                    show_pagination=\"1\"\n                    count=\"5\"\n                    orderby=\"title\"\n                    enable_sort=\"1\"\n                    id_suffix=\"1\"]", ODWPDP_SLUG ); ?></pre>
+    <pre><?php echo "[soubory_ke_stazeni title=\"...\"\n                    show_title=\"1\"\n                    show_pagination=\"1\"\n                    count=\"5\"\n                    orderby=\"title\"\n                    enable_sort=\"1\"\n                    id_suffix=\"1\"]"; ?></pre>
     <p><?php _e( 'kde:', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<code>title</code> — <em>string</em>, název', ODWPDP_SLUG ); ?></p>
     <p><?php _e( '<code>count</code> — <em>integer</em>, počet položek', ODWPDP_SLUG ); ?></p>
