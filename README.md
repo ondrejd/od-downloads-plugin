@@ -59,10 +59,4 @@ Using manual download:
 
 ### Page with our shortcode and widget displayed
 
-Here with normal desktop resolution:
-
 ![screen7](screenshot-7.png "screen7")
-
-Here on smaller screen:
-
-![screen8](screenshot-8.png "screen8")

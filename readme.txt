@@ -56,7 +56,6 @@ Yes, you can use [Poedit](https://poedit.net/) for editing files with localizati
 5. `screenshot-5.png`
 6. `screenshot-6.png`
 7. `screenshot-7.png`
-7. `screenshot-8.png`
 
 == Changelog ==
 
