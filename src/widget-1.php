@@ -110,7 +110,7 @@ class odwpdp_widget_1 extends WP_Widget {
 <p>
     <label for="<?php echo esc_attr( $orderby_id ); ?>" class="short-label"><?php esc_attr_e( 'Řadit dle:', ODWPDP_SLUG ); ?></label> 
     <select id="<?php echo esc_attr( $orderby_id ); ?>" name="<?php echo esc_attr( $orderby_name ); ?>"  value="<?php echo esc_attr( $orderby_val ); ?>">
-        <?php foreach ( $this->get_avail_orderby_vals() as $val => $name ) : ?>
+        <?php foreach ( odwpdp_get_avail_orderby_vals() as $val => $name ) : ?>
         <option value="<?php echo $val; ?>" <?php selected( $orderby_val, $val ); ?>><?php echo $name; ?></option>
         <?php endforeach; ?>
     </select>
@@ -118,7 +118,7 @@ class odwpdp_widget_1 extends WP_Widget {
 <p>
     <label for="<?php echo esc_attr( $order_id ); ?>" class="short-label"><?php esc_attr_e( 'Řadit:', ODWPDP_SLUG ); ?></label> 
     <select id="<?php echo esc_attr( $order_id ); ?>" name="<?php echo esc_attr( $order_name ); ?>"  value="<?php echo esc_attr( $order_val ); ?>">
-        <?php foreach ( $this->get_avail_order_vals() as $val => $name ) : ?>
+        <?php foreach ( odwpdp_get_avail_order_vals() as $val => $name ) : ?>
         <option value="<?php echo $val; ?>" <?php selected( $order_val, $val ); ?>><?php echo $name; ?></option>
         <?php endforeach; ?>
     </select>
