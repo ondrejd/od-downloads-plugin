@@ -306,10 +306,32 @@ if ( ! function_exists( 'odwpdp_get_avail_orderby_vals' ) ):
      */
     function odwpdp_get_avail_orderby_vals() {
         return array(
-            'title'       => __( 'Názvu', ODWPDP_SLUG ),
-            'puton_date'  => __( 'Data vyvěšení', ODWPDP_SLUG ),
-            'putoff_date' => __( 'Data sejmutí', ODWPDP_SLUG ),
+            'title'           => __( 'Názvu', ODWPDP_SLUG ),
+            'puton_date'      => __( 'Data vyvěšení', ODWPDP_SLUG ),
+            'putoff_date'     => __( 'Data sejmutí', ODWPDP_SLUG ),
+            'downloads_count' => __( 'Počtu stažení', ODWPDP_SLUG ),
         );
+    }
+endif;
+
+
+
+if ( ! function_exists( 'odwpdp_get_orderby_meta_key' ) ) :
+    /**
+     * @internal
+     * @param string $orderby One of orderby values except <code>title</code> ({@see odwpdp_get_avail_orderby_vals()}).
+     * @return string
+     */
+    function odwpdp_get_orderby_meta_key( $orderby ) {
+        $meta_key = '';
+        switch( $orderby ) {
+            case 'puton_date'      :
+            case 'putoff_date'     :
+            case 'downloads_count' :
+                $meta_key = "odwpdp-{$orderby}";
+                break;
+        }
+        return $meta_key;
     }
 endif;
 

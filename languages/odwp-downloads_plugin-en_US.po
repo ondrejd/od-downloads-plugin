@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: od-downloads-plugin\n"
-"POT-Creation-Date: 2017-02-28 18:05+0100\n"
+"POT-Creation-Date: 2017-03-01 19:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Ondřej Doněk <ondrejd@gmail.com>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__;esc_attr_e;_x\n"
+"X-Poedit-KeywordsList: _e;__;_x;esc_attr_e;esc_html__\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -26,7 +26,7 @@ msgstr "Sorry but file for download was not found!"
 
 #: js/tinymce-plugins-locales.php:21 js/tinymce-plugins-locales.php:24
 #: src/custom_post_type-1.php:22 src/shortcode-1.php:35
-#: src/shortcode-1.php:190 src/widget-1.php:26
+#: src/shortcode-1.php:202 src/widget-1.php:28
 msgid "Soubory ke stažení"
 msgstr "Files for download"
 
@@ -48,29 +48,29 @@ msgstr "Order by"
 
 #: js/tinymce-plugins-locales.php:27 od-downloads-plugin.php:309
 msgid "Názvu"
-msgstr "name"
+msgstr "Name"
 
 #: js/tinymce-plugins-locales.php:28 od-downloads-plugin.php:310
 msgid "Data vyvěšení"
-msgstr "put on date"
+msgstr "Put on date"
 
 #: js/tinymce-plugins-locales.php:29 od-downloads-plugin.php:311
 msgid "Data sejmutí"
-msgstr "put off date"
+msgstr "Put off date"
 
-#: js/tinymce-plugins-locales.php:30
+#: js/tinymce-plugins-locales.php:30 od-downloads-plugin.php:312
 msgid "Počtu stažení"
-msgstr "downloads count"
+msgstr "Downloads count"
 
 #: js/tinymce-plugins-locales.php:31
 msgid "Řadit"
 msgstr "Order"
 
-#: js/tinymce-plugins-locales.php:32 od-downloads-plugin.php:325
+#: js/tinymce-plugins-locales.php:32 od-downloads-plugin.php:347
 msgid "Sestupně"
 msgstr "Descendant"
 
-#: js/tinymce-plugins-locales.php:33 od-downloads-plugin.php:326
+#: js/tinymce-plugins-locales.php:33 od-downloads-plugin.php:348
 msgid "Vzestupně"
 msgstr "Ascendant"
 
@@ -103,19 +103,19 @@ msgstr "Put off date"
 msgid "Nahrát soubor"
 msgstr "Upload file"
 
-#: od-downloads-plugin.php:345
+#: od-downloads-plugin.php:367
 msgid "Seřazeno vzestupně"
 msgstr "In ascending order"
 
-#: od-downloads-plugin.php:347
+#: od-downloads-plugin.php:369
 msgid "Seřadit vzestupně"
 msgstr "Order ascending"
 
-#: od-downloads-plugin.php:350
+#: od-downloads-plugin.php:372
 msgid "Seřazeno sestupně"
 msgstr "In descending  order"
 
-#: od-downloads-plugin.php:352
+#: od-downloads-plugin.php:374
 msgid "Seřadit sestupně"
 msgstr "Order descending"
 
@@ -195,33 +195,17 @@ msgstr "Files you want to offer for download to your users."
 msgid "Soubor"
 msgstr "File"
 
-#: src/custom_post_type-1.php:85
+#: src/custom_post_type-1.php:85 templates/widget-1.phtml:62
 msgid "Počet stažení"
 msgstr "Downloads count"
 
-#: src/shortcode-1.php:195
+#: src/shortcode-1.php:207
 msgid "Nápověda na wiki projektu"
 msgstr "Help on project's wiki"
 
-#: src/widget-1.php:24
+#: src/widget-1.php:33
 msgid "Widget se soubory ke stažení"
 msgstr "Widget with files for download"
-
-#: src/widget-1.php:103
-msgid "Název:"
-msgstr "Title:"
-
-#: src/widget-1.php:107
-msgid "Počet položek:"
-msgstr "Count of items:"
-
-#: src/widget-1.php:111
-msgid "Řadit dle:"
-msgstr "Order by:"
-
-#: src/widget-1.php:119
-msgid "Řadit:"
-msgstr "Order:"
 
 #: templates/metabox-1.phtml:17
 msgid "Zadejte datum vyvěšení:"
@@ -542,9 +526,49 @@ msgstr "<code>show_pagination</code> — <em>boolean</em>,show pagination?"
 msgid "<code>id_suffix</code> — <em>string</em>, identifikátor."
 msgstr "<code>id_suffix</code> — <em>string</em>, identifier."
 
-#: templates/widget-1.phtml:50
+#: templates/widget-1.phtml:54
+msgid "Velikost souboru"
+msgstr "Size of file"
+
+#: templates/widget-1.phtml:57
 msgid "Datum vyvěšení/sejmutí"
 msgstr "Put on/off date"
+
+#: templates/widget-form-1.phtml:51
+msgid "Název:"
+msgstr "Title:"
+
+#: templates/widget-form-1.phtml:55
+msgid "Popis:"
+msgstr "Description:"
+
+#: templates/widget-form-1.phtml:59
+msgid "Počet položek:"
+msgstr "Count of items:"
+
+#: templates/widget-form-1.phtml:63
+msgid "Řadit dle:"
+msgstr "Order by:"
+
+#: templates/widget-form-1.phtml:71
+msgid "Řadit:"
+msgstr "Order:"
+
+#: templates/widget-form-1.phtml:82
+msgid "Zobrazit ikonu typu"
+msgstr "Show icon of file type"
+
+#: templates/widget-form-1.phtml:88
+msgid "Zobrazit velikost souboru"
+msgstr "Show size of file"
+
+#: templates/widget-form-1.phtml:94
+msgid "Zobrazit data vyvěšení"
+msgstr "Show put on/off dates"
+
+#: templates/widget-form-1.phtml:100
+msgid "Zobrazit počet stažení"
+msgstr "Show count of downloads"
 
 #~ msgid ""
 #~ "<b>Zobrazit stránkování?</b> — zobrazí stránkování na spodku tabulky "

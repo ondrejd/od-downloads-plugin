@@ -29,28 +29,39 @@ if ( ! empty( $instance['title'] ) ) {
 
 ?>
 <div class="odwpdp-widget-1">
+    <?php if ( ! empty( $instance['description'] ) ) : ?>
+    <p class="description"><?php echo apply_filters( 'odwpdp-widget-description-1', $instance['description'] ); ?></p>
+    <?php endif; ?>
     <ul class="files-list">
         <?php foreach ( $files as $file ) :
             $puton_date  = get_post_meta( $file->ID, 'odwpdp-metabox-1', true );
+            $puton_date  = ( ! empty( $puton_date ) ) ? date( 'j.n.Y', strtotime( $puton_date ) ) : '---';
             $putoff_date = get_post_meta( $file->ID, 'odwpdp-metabox-2', true );
+            $putoff_date = ( ! empty( $putoff_date ) ) ? date( 'j.n.Y', strtotime( $putoff_date ) ) : '---';
             $file_info   = odwpdp_get_file_info( $file->ID );
+            $dcount      = odwpdp_get_downloads_count( $file );
         ?>
         <li>
             <span class="file-info-cont file-info-cont-small">
+                <?php if ( (bool) $instance['show_icon'] === true ) : ?>
                 <img src="<?php echo $file_info['icon_32']; ?>" class="file-icon">
-                <?php printf(
-                    '<span class="file-info">' .
-                        '<a href="%s" class="file-link">%s</a><br>' .
-                        '<small class="file-size">%s</small>&nbsp;|&nbsp;' .
-                        '<small class="file-dates" title="%s">%s/%s</small>' .
-                    '</span>',
-                    $file_info['url'],
-                    $file->post_title,
-                    $file_info['size'],
-                    __( 'Datum vyvěšení/sejmutí', ODWPDP_SLUG ),
-                    ( ! empty( $puton_date ) ) ? date( 'j.n.Y', strtotime( $puton_date ) ) : '---',
-                    ( ! empty( $putoff_date ) ) ? date( 'j.n.Y', strtotime( $putoff_date ) ) : '---'
-                ); ?>
+                <?php endif; ?>
+                <span class="file-info">
+                    <a href="<?php echo $file_info['url']; ?>" class="file-link">
+                        <?php echo $file->post_title; ?>
+                    </a><br>
+                    <?php if ( (bool) $instance['show_size'] === true ) : ?>
+                    <small class="file-size" title="<?php _e( 'Velikost souboru', ODWPDP_SLUG ); ?>"><?php echo $file_info['size']; ?></small>&nbsp;|&nbsp;
+                    <?php endif; ?>
+                    <?php if ( (bool) $instance['show_dates'] === true ) : ?>
+                    <small class="file-dates" title="<?php _e( 'Datum vyvěšení/sejmutí', ODWPDP_SLUG ); ?>">
+                        <?php echo $puton_date; ?>/<?php echo $putoff_date; ?>
+                    </small>
+                    <?php endif; ?>
+                    <?php if ( (bool) $instance['show_count'] === true ) : ?>&nbsp;|&nbsp;
+                    <small class="file-dcount" title="<?php _e( 'Počet stažení', ODWPDP_SLUG ); ?>"><?php echo $dcount; ?></small>
+                    <?php endif; ?>
+                </span>
             </span>
         </li>
         <?php endforeach; ?>

@@ -1,0 +1,101 @@
+<?php
+/**
+ * Template file for manage form of widget "Soubory ke stažení".
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @package odwp-downloads_plugin
+ * 
+ * @todo Format dates by WordPress inner function!
+ * 
+ * Used variables (initialized in {@see odwpdp_widget_1::form()}).
+ *
+ * @var array   $instance
+ * @var string  $title_id
+ * @var string  $title_name
+ * @var string  $title_val
+ * @var string  $desc_id
+ * @var string  $desc_name
+ * @var string  $desc_val
+ * @var string  $count_id
+ * @var string  $count_name
+ * @var string  $count_val
+ * @var string  $orderby_id
+ * @var string  $orderby_name
+ * @var string  $orderby_val
+ * @var array   $orderby_vals
+ * @var string  $order_id
+ * @var string  $order_name
+ * @var string  $order_val
+ * @var array   $order_vals
+ * @var string  $show_icon_id
+ * @var string  $show_icon_name
+ * @var boolean $show_icon_val
+ * @var string  $show_size_id
+ * @var string  $show_size_name
+ * @var boolean $show_size_val
+ * @var string  $show_dates_id
+ * @var string  $show_dates_name
+ * @var boolean $show_dates_val
+ * @var string  $show_count_id
+ * @var string  $show_count_name
+ * @var boolean $show_count_val
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit();
+}
+
+?>
+<p>
+    <label for="<?php echo esc_attr( $title_id ); ?>"><?php _e( 'Název:', ODWPDP_SLUG ); ?></label> 
+    <input class="widefat" id="<?php echo esc_attr( $title_id ); ?>" name="<?php echo esc_attr( $title_name ); ?>" type="text" value="<?php echo esc_attr( $title_val ); ?>">
+</p>
+<p>
+    <label for="<?php echo esc_attr( $desc_id ); ?>"><?php _e( 'Popis:', ODWPDP_SLUG ); ?></label> 
+    <textarea class="widefat" id="<?php echo esc_attr( $desc_id ); ?>" name="<?php echo esc_attr( $desc_name ); ?>"><?php echo esc_attr( $desc_val ); ?></textarea>
+</p>
+<p>
+    <label for="<?php echo esc_attr( $count_id ); ?>"><?php _e( 'Počet položek:', ODWPDP_SLUG ); ?></label> 
+    <input class="tiny-text" id="<?php echo esc_attr( $count_id ); ?>" name="<?php echo esc_attr( $count_name ); ?>" type="number" value="<?php echo esc_attr( $count_val ); ?>" step="1" min="1" size="3">
+</p>
+<p>
+    <label for="<?php echo esc_attr( $orderby_id ); ?>"><?php _e( 'Řadit dle:', ODWPDP_SLUG ); ?></label> 
+    <select id="<?php echo esc_attr( $orderby_id ); ?>" name="<?php echo esc_attr( $orderby_name ); ?>"  value="<?php echo esc_attr( $orderby_val ); ?>">
+        <?php foreach ( odwpdp_get_avail_orderby_vals() as $val => $name ) : ?>
+        <option value="<?php echo $val; ?>" <?php selected( $orderby_val, $val ); ?>><?php echo $name; ?></option>
+        <?php endforeach; ?>
+    </select>
+</p>
+<p>
+    <label for="<?php echo esc_attr( $order_id ); ?>"><?php _e( 'Řadit:', ODWPDP_SLUG ); ?></label> 
+    <select id="<?php echo esc_attr( $order_id ); ?>" name="<?php echo esc_attr( $order_name ); ?>"  value="<?php echo esc_attr( $order_val ); ?>">
+        <?php foreach ( odwpdp_get_avail_order_vals() as $val => $name ) : ?>
+        <option value="<?php echo $val; ?>" <?php selected( $order_val, $val ); ?>><?php echo $name; ?></option>
+        <?php endforeach; ?>
+    </select>
+</p>
+<p>
+    <label for="<?php echo esc_attr( $show_icon_id ); ?>">
+        <input type="checkbox" id="<?php echo esc_attr( $show_icon_id ); ?>" name="<?php echo esc_attr( $show_icon_name ); ?>" <?php checked( $show_icon_val, true ); ?>
+        <span><?php _e( 'Zobrazit ikonu typu', ODWPDP_SLUG ); ?></span>
+    </label> 
+</p>
+<p>
+    <label for="<?php echo esc_attr( $show_size_id ); ?>">
+        <input type="checkbox" id="<?php echo esc_attr( $show_size_id ); ?>" name="<?php echo esc_attr( $show_size_name ); ?>" <?php checked( $show_size_val, true ); ?>
+        <span><?php _e( 'Zobrazit velikost souboru', ODWPDP_SLUG ); ?></span>
+    </label> 
+</p>
+<p>
+    <label for="<?php echo esc_attr( $show_dates_id ); ?>">
+        <input type="checkbox" id="<?php echo esc_attr( $show_dates_id ); ?>" name="<?php echo esc_attr( $show_dates_name ); ?>" <?php checked( $show_dates_val, true ); ?>
+        <span><?php _e( 'Zobrazit data vyvěšení', ODWPDP_SLUG ); ?></span>
+    </label> 
+</p>
+<p>
+    <label for="<?php echo esc_attr( $show_count_id ); ?>">
+        <input type="checkbox" id="<?php echo esc_attr( $show_count_id ); ?>" name="<?php echo esc_attr( $show_count_name ); ?>" <?php checked( $show_count_val, true ); ?>
+        <span><?php _e( 'Zobrazit počet stažení', ODWPDP_SLUG ); ?></span>
+    </label> 
+</p>

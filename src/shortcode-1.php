@@ -68,10 +68,22 @@ if ( ! function_exists( 'odwpdp_add_shortcode_1' ) ) :
             $query_args['orderby'] = 'title';
         }
         else {
-            $query_args['meta_query'] = array();
+            $key  = odwpdp_get_orderby_meta_key( $attrs['orderby'] );
+            $type = ( $key == 'downloads_count' ) ? 'NUMERIC' : 'DATE';
+
+            $query_args['orderby'] = 'meta_value';
+            $query_args['meta_query']   = array();
             $query_args['meta_query'][] = array(
-                'key'  => 'odwpdp-metabox-1',
-                'type' => 'DATE'
+                // Custom field key.
+                'key'  => $key,
+                // Custom field type. Possible values are 'NUMERIC',
+                // 'BINARY', 'CHAR', 'DATE', 'DATETIME', 'DECIMAL',
+                // 'SIGNED', 'TIME', 'UNSIGNED'. Default value is 'CHAR'.
+                'type' => $type,
+                // (string) - Operator to test. Possible values are
+                // '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN',
+                // 'NOT IN', 'BETWEEN', 'NOT BETWEEN'. Default value is '='.
+                'compare' => '=',
             );
         }
 

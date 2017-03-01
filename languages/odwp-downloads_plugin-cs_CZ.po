@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: od-downloads-plugin\n"
-"POT-Creation-Date: 2017-02-28 17:13+0100\n"
+"POT-Creation-Date: 2017-03-01 19:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Ondřej Doněk <ondrejd@gmail.com>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__;_x;esc_attr_e\n"
+"X-Poedit-KeywordsList: _e;__;_x;esc_attr_e;esc_html__\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -26,7 +26,7 @@ msgstr ""
 
 #: js/tinymce-plugins-locales.php:21 js/tinymce-plugins-locales.php:24
 #: src/custom_post_type-1.php:22 src/shortcode-1.php:35
-#: src/shortcode-1.php:190 src/widget-1.php:26
+#: src/shortcode-1.php:202 src/widget-1.php:28
 msgid "Soubory ke stažení"
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Data sejmutí"
 msgstr ""
 
-#: js/tinymce-plugins-locales.php:30
+#: js/tinymce-plugins-locales.php:30 od-downloads-plugin.php:312
 msgid "Počtu stažení"
 msgstr ""
 
@@ -66,11 +66,11 @@ msgstr ""
 msgid "Řadit"
 msgstr ""
 
-#: js/tinymce-plugins-locales.php:32 od-downloads-plugin.php:325
+#: js/tinymce-plugins-locales.php:32 od-downloads-plugin.php:347
 msgid "Sestupně"
 msgstr ""
 
-#: js/tinymce-plugins-locales.php:33 od-downloads-plugin.php:326
+#: js/tinymce-plugins-locales.php:33 od-downloads-plugin.php:348
 msgid "Vzestupně"
 msgstr ""
 
@@ -103,19 +103,19 @@ msgstr ""
 msgid "Nahrát soubor"
 msgstr ""
 
-#: od-downloads-plugin.php:345
+#: od-downloads-plugin.php:367
 msgid "Seřazeno vzestupně"
 msgstr ""
 
-#: od-downloads-plugin.php:347
+#: od-downloads-plugin.php:369
 msgid "Seřadit vzestupně"
 msgstr ""
 
-#: od-downloads-plugin.php:350
+#: od-downloads-plugin.php:372
 msgid "Seřazeno sestupně"
 msgstr ""
 
-#: od-downloads-plugin.php:352
+#: od-downloads-plugin.php:374
 msgid "Seřadit sestupně"
 msgstr ""
 
@@ -195,32 +195,16 @@ msgstr ""
 msgid "Soubor"
 msgstr ""
 
-#: src/custom_post_type-1.php:85
+#: src/custom_post_type-1.php:85 templates/widget-1.phtml:62
 msgid "Počet stažení"
 msgstr ""
 
-#: src/shortcode-1.php:195
+#: src/shortcode-1.php:207
 msgid "Nápověda na wiki projektu"
 msgstr ""
 
-#: src/widget-1.php:24
+#: src/widget-1.php:33
 msgid "Widget se soubory ke stažení"
-msgstr ""
-
-#: src/widget-1.php:103
-msgid "Název:"
-msgstr ""
-
-#: src/widget-1.php:107
-msgid "Počet položek:"
-msgstr ""
-
-#: src/widget-1.php:111
-msgid "Řadit dle:"
-msgstr ""
-
-#: src/widget-1.php:119
-msgid "Řadit:"
 msgstr ""
 
 #: templates/metabox-1.phtml:17
@@ -522,8 +506,48 @@ msgstr ""
 msgid "<code>id_suffix</code> — <em>string</em>, identifikátor."
 msgstr ""
 
-#: templates/widget-1.phtml:50
+#: templates/widget-1.phtml:54
+msgid "Velikost souboru"
+msgstr ""
+
+#: templates/widget-1.phtml:57
 msgid "Datum vyvěšení/sejmutí"
+msgstr ""
+
+#: templates/widget-form-1.phtml:51
+msgid "Název:"
+msgstr ""
+
+#: templates/widget-form-1.phtml:55
+msgid "Popis:"
+msgstr ""
+
+#: templates/widget-form-1.phtml:59
+msgid "Počet položek:"
+msgstr ""
+
+#: templates/widget-form-1.phtml:63
+msgid "Řadit dle:"
+msgstr ""
+
+#: templates/widget-form-1.phtml:71
+msgid "Řadit:"
+msgstr ""
+
+#: templates/widget-form-1.phtml:82
+msgid "Zobrazit ikonu typu"
+msgstr ""
+
+#: templates/widget-form-1.phtml:88
+msgid "Zobrazit velikost souboru"
+msgstr ""
+
+#: templates/widget-form-1.phtml:94
+msgid "Zobrazit data vyvěšení"
+msgstr ""
+
+#: templates/widget-form-1.phtml:100
+msgid "Zobrazit počet stažení"
 msgstr ""
 
 #~ msgid "Downloads"
