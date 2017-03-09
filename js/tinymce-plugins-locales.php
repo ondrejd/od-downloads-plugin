@@ -4,8 +4,9 @@
  *
  * @author  Ondřej Doněk, <ondrejd@gmail.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
- * @package odwp-downloads_plugin
+ * @link https://github.com/ondrejd/od-downloads-plugin for the canonical source repository
  * @link https://www.gavick.com/blog/wordpress-tinymce-custom-buttons
+ * @package odwp-downloads_plugin
  */
  
 if ( ! defined( 'ABSPATH' ) ) {

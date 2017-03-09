@@ -2,16 +2,20 @@
 /**
  * Plugin Name: Simple Downloads Plugin
  * Plugin URI: https://github.com/ondrejd/od-downloads-plugin
- * Description: Plugin that allows to manage files that you want to offer to your users for download. Allows to use either sidebar widget, shortcode with responsive table or using regular theme (downloads are <em>custom post types</em> so you can make templates for them).<br>Visit my homepage to see my other WordPress plugins or use <a href="https://www.paypal.me/ondrejd">this link</a> to make a donation if you are satisfied with this plugin.
+ * Description: Plugin that allows to manage files that you want to offer to your users for download. Allows to use either sidebar widget, shortcode with responsive table or using regular theme (downloads are <em>custom post types</em> so you can make templates for them). Visit my homepage to see my other WordPress plugins or use <a href="https://www.paypal.me/ondrejd">this link</a> to make a donation if you are satisfied with this plugin.
  * Version: 1.0.0
  * Author: ondrejd
  * Author URI: http://ondrejd.com/
  * License: GPLv3
+ * Requires at least: 3.7
+ * Tested up to: 4.7.2
+ *
  * Text Domain: odwp-downloads_plugin
  * Domain Path: /languages
  *
  * @author  Ondřej Doněk, <ondrejd@gmail.com>
  * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @link https://github.com/ondrejd/od-downloads-plugin for the canonical source repository
  * @package odwp-downloads_plugin
  */
 
