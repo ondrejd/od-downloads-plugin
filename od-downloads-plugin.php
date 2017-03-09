@@ -91,12 +91,11 @@ if ( ! function_exists( 'odwpdp_add_metaboxes' ) ) :
         global $odwpdp_metaboxes;
 
         // Include all meta boxes
-        // Metabox "Datum vyveseni"
-        include_once( ODWPDP_PATH . '/src/metabox-1.php' );
-        // Metabox "Datum sejmuti"
-        include_once( ODWPDP_PATH . '/src/metabox-2.php' );
-        // Metabox "Nahrat soubor"
-        include_once( ODWPDP_PATH . '/src/metabox-3.php' );
+        for (
+                $i = 1;
+                $i <= count( $odwpdp_metaboxes );
+                include_once( ODWPDP_PATH . '/src/metabox-' . $i++ . '.php' )
+        );
 
         add_action( 'add_meta_boxes', 'odwpdp_metaboxes' );
         
@@ -106,7 +105,7 @@ if ( ! function_exists( 'odwpdp_add_metaboxes' ) ) :
     }
 endif;
 
-if ( is_admin() === true ) {
+if ( is_admin() === true && count( $odwpdp_metaboxes ) > 0 ) {
     // Load our meta boxes only on edit post page.
     add_action( 'load-post.php', 'odwpdp_add_metaboxes' );
     add_action( 'load-post-new.php', 'odwpdp_add_metaboxes' );
