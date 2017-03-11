@@ -3,7 +3,7 @@ Contributors: ondrejd
 Donate link: https://www.paypal.me/ondrejd
 Tags: custom post type,downloads,shortcode,widget
 Requires at least: 3.7
-Tested up to: 4.7.2
+Tested up to: 4.7.3
 Stable tag: 1.0.0
 
 Plugin that allows to manage files that you want to offer to your users for download. Allows to use either sidebar widget, shortcode with responsive table or using regular theme (downloads are custom post types so you can make templates for them).

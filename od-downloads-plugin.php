@@ -8,7 +8,7 @@
  * Author URI: http://ondrejd.com/
  * License: GPLv3
  * Requires at least: 3.7
- * Tested up to: 4.7.2
+ * Tested up to: 4.7.3
  *
  * Text Domain: odwp-downloads_plugin
  * Domain Path: /languages
