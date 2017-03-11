@@ -1,9 +1,11 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Script through which are files downloaded.
+ *
+ * @author  Ondřej Doněk, <ondrejd@gmail.com>
+ * @license https://www.gnu.org/licenses/gpl-3.0.en.html GNU General Public License 3.0
+ * @link https://github.com/ondrejd/od-downloads-plugin for the canonical source repository
+ * @package odwp-downloads_plugin
  */
 
 // Initialize WP
