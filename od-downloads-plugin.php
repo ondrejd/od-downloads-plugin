@@ -40,15 +40,13 @@ include_once( ODWPDP_PATH . '/src/custom_post_type-1.php' );
 
 
 
-if ( !function_exists( 'odwpdp_load_textdomain' ) ) :
-    /**
-     * Load plugin textdomain.
-     */
-    function odwpdp_load_textdomain() {
-        load_plugin_textdomain( ODWPDP_SLUG, false, 'od-downloads-plugin/languages' );
-    }
-endif;
-add_action( 'init', 'odwpdp_load_textdomain' );
+/**
+ * Load localization. Is here written directly and not using `init` action
+ * see link below.
+ *
+ * @link http://wordpress.stackexchange.com/questions/142934/custom-post-type-and-taxonomiess-labels-localization-not-working
+ */
+load_plugin_textdomain( ODWPDP_SLUG, false, 'od-downloads-plugin/languages' );
 
 
 
