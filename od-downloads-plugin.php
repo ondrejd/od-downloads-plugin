@@ -378,3 +378,8 @@ if ( ! function_exists( 'odwpdp_odwpdp_print_order_links_links' ) ) :
 <?php
     }
 endif;
+
+
+
+// Include dashboard widget "Soubory ke stažení"
+include_once( ODWPDP_PATH . '/src/dashboard-widget-1.php' );
