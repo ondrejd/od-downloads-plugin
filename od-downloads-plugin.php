@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Simple Downloads Plugin
+ * Plugin Name: Downloads Plugin
  * Plugin URI: https://github.com/ondrejd/od-downloads-plugin
  * Description: Plugin that allows to manage files that you want to offer to your users for download. Allows to use either sidebar widget, shortcode with responsive table or using regular theme (downloads are <em>custom post types</em> so you can make templates for them). Visit my homepage to see my other WordPress plugins or use <a href="https://www.paypal.me/ondrejd">this link</a> to make a donation if you are satisfied with this plugin.
  * Version: 1.0.0
